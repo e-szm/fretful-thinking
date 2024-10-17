@@ -1,10 +1,12 @@
-import { generateTuning } from "../../../util/tuning";
-import Fret from "./fret/Fret";
+import { useSelector } from "react-redux";
 
+import { getFretTunings } from "../guitarSlice";
+
+import Fret from "./fret/Fret";
 import styles from "./Fretboard.module.css";
 
 function Fretboard() {
-  const frets = generateTuning();
+  const frets = useSelector(getFretTunings);
 
   return (
     <div className={styles.fretboard}>
