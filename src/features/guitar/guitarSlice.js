@@ -4,7 +4,7 @@ import { generateTuning } from "../../util/tuning";
 
 const initialState = {
   fretTunings: generateTuning(),
-  numFrets: 12,
+  numFrets: 6,
 };
 
 const guitarSlice = createSlice({
@@ -21,6 +21,8 @@ const guitarSlice = createSlice({
 });
 
 export const { updateNumFrets, updateFretTunings } = guitarSlice.actions;
+
+export const getNumFrets = (store) => store.guitar.numFrets;
 
 export const getFretTunings = (store) => store.guitar.fretTunings;
 

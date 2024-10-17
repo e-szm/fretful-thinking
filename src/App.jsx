@@ -1,7 +1,7 @@
-import Guitar from "./features/guitar/Guitar";
+import AppLayout from "./ui/AppLayout";
 
 function App() {
-  return <Guitar />;
+  return <AppLayout />;
 }
 
 export default App;
