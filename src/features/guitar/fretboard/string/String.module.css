@@ -1,0 +1,7 @@
+.string {
+  position: relative;
+
+  background-color: #333;
+  height: 2px;
+  width: 100%;
+}

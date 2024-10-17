@@ -1,5 +1,7 @@
+import Guitar from "./features/guitar/Guitar";
+
 function App() {
-  return <div>Hello Vite!!</div>;
+  return <Guitar />;
 }
 
 export default App;

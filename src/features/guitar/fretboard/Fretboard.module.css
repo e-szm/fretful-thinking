@@ -1,0 +1,7 @@
+.fretboard {
+  margin: 30px 30px;
+
+  display: flex;
+
+  height: 30rem;
+}
