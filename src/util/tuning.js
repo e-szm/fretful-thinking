@@ -1,4 +1,17 @@
-const NOTES = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+export const NOTES = [
+  "A",
+  "A#",
+  "B",
+  "C",
+  "C#",
+  "D",
+  "D#",
+  "E",
+  "F",
+  "F#",
+  "G",
+  "G#",
+];
 
 function getTuningIndices(tuning) {
   if (!tuning.length) return;
