@@ -1,0 +1,11 @@
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sliderContainer input {
+  width: 75%;
+  accent-color: #c0a9bd;
+}
