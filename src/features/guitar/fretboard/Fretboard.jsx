@@ -16,7 +16,7 @@ function Fretboard() {
   return (
     <div className={styles.fretboard}>
       {displayFrets.map((fret, i) => (
-        <Fret key={i} fret={fret} noteFilter={noteFilter} />
+        <Fret key={i} num={i + 1} fret={fret} noteFilter={noteFilter} />
       ))}
     </div>
   );

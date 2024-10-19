@@ -12,7 +12,7 @@
   border-radius: 100%;
 
   font-size: 1.8rem;
-  background-color: #c0a9bd;
+  background-color: #cdbaca;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
 
   transition: transform 200ms, background-color 200ms;
@@ -22,5 +22,9 @@
 
 .filter:global(.active) {
   transform: translateY(-1.2rem);
-  background-color: #cdbaca;
+  background-color: #c0a9bd;
+}
+
+.filter:hover {
+  border: 1px solid #777;
 }

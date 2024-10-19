@@ -8,4 +8,6 @@
 .sliderContainer input {
   width: 75%;
   accent-color: #c0a9bd;
+
+  cursor: pointer;
 }
