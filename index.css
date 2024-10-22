@@ -13,3 +13,8 @@ body {
   font-size: 1.6rem;
   background-color: #f4f2f3;
 }
+
+#root {
+  max-width: 130rem;
+  margin: auto;
+}

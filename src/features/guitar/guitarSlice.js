@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { generateTuning } from "../../util/tuning";
 
 const initialState = {
+  stringTunings: ["E", "A", "D", "G", "B", "E"],
   fretTunings: generateTuning(),
   numFrets: 6,
   noteFilter: "",
@@ -12,11 +13,12 @@ const guitarSlice = createSlice({
   name: "guitar",
   initialState,
   reducers: {
+    updateStringTunings(state, action) {
+      state.stringTunings = action.payload;
+      state.fretTunings = generateTuning(state.stringTunings);
+    },
     updateNumFrets(state, action) {
       state.numFrets = action.payload;
-    },
-    updateFretTunings(state, action) {
-      state.fretTunings = action.payload;
     },
     addNoteFilter(state, action) {
       if (state.noteFilter === action.payload) {
@@ -33,11 +35,13 @@ const guitarSlice = createSlice({
 });
 
 export const {
+  updateStringTunings,
   updateNumFrets,
-  updateFretTunings,
   addNoteFilter,
   removeNoteFilter,
 } = guitarSlice.actions;
+
+export const getStringTunings = (store) => store.guitar.stringTunings;
 
 export const getNumFrets = (store) => store.guitar.numFrets;
 

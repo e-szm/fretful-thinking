@@ -8,7 +8,7 @@
   height: 4.2rem;
   width: 4.2rem;
   padding: 0.3rem;
-  border: none;
+  border: 2px solid #cdbaca;
   border-radius: 100%;
 
   font-size: 1.8rem;
@@ -26,5 +26,5 @@
 }
 
 .filter:hover {
-  border: 1px solid #777;
+  background-color: #c0a9bd;
 }

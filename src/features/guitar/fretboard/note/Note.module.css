@@ -1,8 +1,7 @@
 .note {
   position: absolute;
-  top: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 
   display: flex;
   justify-content: center;
@@ -16,4 +15,6 @@
   font-size: 1.8rem;
   background-color: #94a7ae;
   border: 1px solid #777;
+
+  z-index: 999;
 }

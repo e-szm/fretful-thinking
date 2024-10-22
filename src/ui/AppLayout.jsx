@@ -1,14 +1,12 @@
-import SelectNumFrets from "./SelectNumFrets";
-import Guitar from "../features/guitar/Guitar";
-import FilterNotes from "./FilterNotes";
 import styles from "./AppLayout.module.css";
+import MainContent from "./MainContent";
+import Sidebar from "./Sidebar";
 
 function AppLayout() {
   return (
     <div className={styles.appLayout}>
-      <FilterNotes />
-      <SelectNumFrets />
-      <Guitar />
+      <Sidebar />
+      <MainContent />
     </div>
   );
 }

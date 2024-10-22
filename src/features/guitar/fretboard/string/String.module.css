@@ -1,9 +1,16 @@
-.string {
+.stringContainer {
   position: relative;
 
+  display: flex;
+  align-items: center;
+
+  height: 5rem;
+}
+
+.string {
   background-color: #333;
   height: 2px;
   width: 100%;
 
-  z-index: 999;
+  z-index: 998;
 }
