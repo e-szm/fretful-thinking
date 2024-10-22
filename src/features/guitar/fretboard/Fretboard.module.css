@@ -1,5 +1,7 @@
 .fretboard {
   display: flex;
 
-  min-height: 30rem;
+  width: 100%;
+
+  border-left: 1rem solid #333;
 }

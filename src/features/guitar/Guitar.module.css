@@ -1,3 +1,4 @@
 .guitar {
-  border-left: 1rem solid #333;
+  display: flex;
+  gap: 1.2rem;
 }

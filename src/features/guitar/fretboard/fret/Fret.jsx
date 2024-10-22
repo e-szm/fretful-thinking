@@ -10,7 +10,6 @@ function Fret({ num, fret, noteFilter }) {
   return (
     <>
       <div className={styles.fret}>
-        {/* Inlays to show on odd frets on, which are 0 based */}
         {showInlay && (
           <div className={styles.inlayContainer}>
             <div className={styles.inlay}></div>

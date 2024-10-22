@@ -1,0 +1,25 @@
+.btnContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn {
+  width: 3.2rem;
+  padding: 0.4rem;
+  text-align: center;
+
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  background: #cdbaca;
+  border: 2px solid #cdbaca;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition: background-color 200ms;
+}
+
+.btn:hover {
+  background-color: #c0a9bd;
+}
