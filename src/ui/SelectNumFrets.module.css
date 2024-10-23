@@ -7,7 +7,13 @@
 
 .sliderContainer input {
   width: 75%;
-  accent-color: #c0a9bd;
+  accent-color: #cdbaca;
 
   cursor: pointer;
+
+  transition: accent-color 200ms;
+}
+
+.sliderContainer input:hover {
+  accent-color: #c0a9bd;
 }
