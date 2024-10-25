@@ -1,7 +1,13 @@
-import String from "../string/String";
+import { useSelector } from "react-redux";
+
+import { getMenu } from "../../guitarSlice";
+
 import styles from "./Fret.module.css";
+import String from "../string/String";
 
 function Fret({ num, fret, noteFilter }) {
+  const menu = useSelector(getMenu);
+
   // Guitar inlays typically appear on 1, 3, 5, 7, 9
   // On fret 12, there is typically a double inlay
   const doubleInlay = num === 12;
@@ -16,11 +22,13 @@ function Fret({ num, fret, noteFilter }) {
             {doubleInlay && <div className={styles.inlay}></div>}
           </div>
         )}
-        {noteFilter
+        {noteFilter && menu === "fretboard"
           ? fret.map((note, i) => (
               <String key={i} note={noteFilter === note ? note : ""} />
             ))
-          : fret.map((note, i) => <String key={i} note={note} />)}
+          : fret.map((note, i) => (
+              <String key={i} note={note} root={noteFilter === note} />
+            ))}
       </div>
     </>
   );

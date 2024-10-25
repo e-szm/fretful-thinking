@@ -18,3 +18,7 @@
 
   z-index: 999;
 }
+
+.note:global(.root) {
+  background-color: #cbab58;
+}

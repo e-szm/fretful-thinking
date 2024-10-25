@@ -1,8 +1,8 @@
 import styles from "./Note.module.css";
 
-function Note({ note }) {
+function Note({ note, root }) {
   return (
-    <div className={styles.note}>
+    <div className={`${styles.note} ${root ? "root" : ""}`}>
       <p>{note}</p>
     </div>
   );
