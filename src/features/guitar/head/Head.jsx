@@ -9,6 +9,7 @@ import { useGuitarNavigate } from "../../../hooks/useGuitarNavigate";
 
 function Head() {
   const [searchParams] = useSearchParams();
+  const view = searchParams.get("view");
   const { numFrets, tuning } = useGuitarParams();
   const navigateGuitar = useGuitarNavigate();
 
@@ -38,6 +39,7 @@ function Head() {
           // Since we've reversed the array, need the opposite index to map appropriately when updating in handleTune
           stringNum={reversedTuning.length - i - 1}
           onFocus={handleFocus}
+          disabled={view !== "all"}
         />
       ))}
     </div>

@@ -1,6 +1,6 @@
 import styles from "./InputTuning.module.css";
 
-function InputTuning({ note, stringNum, onTune, onFocus }) {
+function InputTuning({ note, stringNum, onTune, onFocus, disabled }) {
   return (
     <input
       className={styles.input}
@@ -10,6 +10,7 @@ function InputTuning({ note, stringNum, onTune, onFocus }) {
       data-stringnum={stringNum}
       onChange={onTune}
       onFocus={onFocus}
+      disabled={disabled}
     />
   );
 }
