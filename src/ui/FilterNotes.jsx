@@ -1,7 +1,4 @@
-// import { useDispatch } from "react-redux";
-
 import { useGuitarQuery } from "../hooks/useGuitarQuery";
-// import { updateFretboard } from "../features/guitar/guitarSlice";
 import { NOTES } from "../util/tuning";
 
 import styles from "./FilterNotes.module.css";
@@ -18,8 +15,6 @@ function NoteFilter({ note, onClick, currentFilter }) {
 }
 
 function FilterNotes() {
-  // const dispatch = useDispatch();
-
   const [searchParams, setSearchParams] = useGuitarQuery();
 
   function handleClickFilter(clickedNote) {
@@ -30,7 +25,6 @@ function FilterNotes() {
     } else newParams = { ...searchParams, note: clickedNote };
 
     setSearchParams(newParams);
-    // dispatch(updateFretboard(newParams));
   }
 
   return (
