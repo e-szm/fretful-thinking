@@ -1,22 +1,21 @@
-import { useDispatch } from "react-redux";
+import { useGuitarQuery } from "../hooks/useGuitarQuery";
 
-import { setTonality } from "../features/guitar/guitarSlice";
+import Button from "./Button";
 
 function SelectTonality() {
-  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useGuitarQuery();
 
-  function handleClickTonality(e) {
-    dispatch(setTonality(e.target.dataset.tonality));
+  function handleClickTonality(clickedTonality) {
+    if (clickedTonality === searchParams.tonality) return;
+
+    const newParams = { ...searchParams, tonality: clickedTonality };
+    setSearchParams(newParams);
   }
 
   return (
     <div>
-      <button data-tonality="minor" onClick={handleClickTonality}>
-        Minor
-      </button>
-      <button data-tonality="major" onClick={handleClickTonality}>
-        Major
-      </button>
+      <Button onClick={() => handleClickTonality("minor")}>Minor</Button>
+      <Button onClick={() => handleClickTonality("major")}>Major</Button>
     </div>
   );
 }

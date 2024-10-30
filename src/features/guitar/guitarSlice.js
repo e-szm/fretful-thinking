@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { generateTuning, generatePentatonic } from "../../util/tuning";
+import { generateFretboard, generatePentatonic } from "../../util/tuning";
 
 const initialState = {
-  menu: "fretboard", // fretboard, pentatonic
+  // menu: "fretboard", // fretboard, pentatonics
   stringTunings: ["E", "A", "D", "G", "B", "E"],
-  fretTunings: generateTuning(),
+  // fretboard: generateFretboard(),
   numFrets: 12,
-  noteFilter: "",
+  // noteFilter: "",
   pentShape: 1,
   tonality: "minor", // minor, major
 };
@@ -16,48 +16,68 @@ const guitarSlice = createSlice({
   name: "guitar",
   initialState,
   reducers: {
-    setMenu(state, action) {
-      if (state.menu === action.payload) return;
+    updateFretboard: {
+      prepare({ view, pentShape, tonality, note }) {
+        return { payload: { view, pentShape, tonality, note } };
+      },
+      reducer(state, action) {
+        console.log(action.payload);
+        if (action.payload.view === "all") {
+          state.fretboard = generateFretboard(state.stringTunings);
+        }
 
-      state.menu = action.payload;
-
-      if (action.payload === "fretboard") {
-        state.fretTunings = generateTuning();
-      }
-      if (action.payload === "pentatonic") {
-        state.stringTunings = initialState.stringTunings;
-        state.fretTunings = generatePentatonic(
-          state.noteFilter,
-          state.pentShape,
-          state.tonality
-        );
-      }
+        if (action.payload.view === "pentatonics") {
+          state.stringTunings = initialState.stringTunings;
+          state.fretboard = generatePentatonic(
+            action.payload.note,
+            action.payload.pentShape,
+            action.payload.tonality
+          );
+        }
+      },
     },
+    // setMenu(state, action) {
+    //   if (state.menu === action.payload) return;
+
+    //   state.menu = action.payload;
+
+    //   if (action.payload === "fretboard") {
+    //     state.fretTunings = generateTuning();
+    //   }
+    //   if (action.payload === "pentatonic") {
+    //     state.stringTunings = initialState.stringTunings;
+    //     state.fretTunings = generatePentatonic(
+    //       state.noteFilter,
+    //       state.pentShape,
+    //       state.tonality
+    //     );
+    //   }
+    // },
     updateStringTunings(state, action) {
       state.stringTunings = action.payload;
-      state.fretTunings = generateTuning(state.stringTunings);
+      state.fretboard = generateFretboard(state.stringTunings);
     },
     updateNumFrets(state, action) {
       state.numFrets = action.payload;
     },
-    addNoteFilter(state, action) {
-      if (state.noteFilter === action.payload) {
-        guitarSlice.caseReducers.removeNoteFilter(state);
-        return;
-      }
+    // addNoteFilter(state, action) {
+    //   if (state.noteFilter === action.payload) {
+    //     guitarSlice.caseReducers.removeNoteFilter(state);
+    //     return;
+    //   }
 
-      state.noteFilter = action.payload;
-      if (state.menu === "pentatonic")
-        state.fretTunings = generatePentatonic(
-          state.noteFilter,
-          state.pentShape,
-          state.tonality
-        );
-    },
-    removeNoteFilter(state) {
-      state.noteFilter = "";
-      if (state.menu === "pentatonic") state.fretTunings = generatePentatonic();
-    },
+    //   state.noteFilter = action.payload;
+    //   if (state.menu === "pentatonic")
+    //     state.fretTunings = generatePentatonic(
+    //       state.noteFilter,
+    //       state.pentShape,
+    //       state.tonality
+    //     );
+    // },
+    // removeNoteFilter(state) {
+    //   state.noteFilter = "";
+    //   if (state.menu === "pentatonic") state.fretTunings = generatePentatonic();
+    // },
     updatePentShape(state, action) {
       if (state.pentShape === action.payload) return;
 
@@ -82,23 +102,23 @@ const guitarSlice = createSlice({
 });
 
 export const {
-  setMenu,
+  updateFretboard,
   updateStringTunings,
   updateNumFrets,
-  addNoteFilter,
-  removeNoteFilter,
+  // addNoteFilter,
+  // removeNoteFilter,
   updatePentShape,
   setTonality,
 } = guitarSlice.actions;
 
-export const getMenu = (store) => store.guitar.menu;
+// export const getMenu = (store) => store.guitar.menu;
 
 export const getStringTunings = (store) => store.guitar.stringTunings;
 
 export const getNumFrets = (store) => store.guitar.numFrets;
 
-export const getFretTunings = (store) => store.guitar.fretTunings;
+export const getFretboard = (store) => store.guitar.fretboard;
 
-export const getNoteFilter = (store) => store.guitar.noteFilter;
+// export const getNoteFilter = (store) => store.guitar.noteFilter;
 
 export default guitarSlice.reducer;

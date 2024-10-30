@@ -1,22 +1,24 @@
-import { useSelector } from "react-redux";
+import { useGuitarQuery } from "../../../hooks/useGuitarQuery";
+import { useGuitarParams } from "../../../hooks/useGuitarParams";
+import { generateFretboard } from "../../../util/tuning";
 
-import { getFretTunings, getNumFrets, getNoteFilter } from "../guitarSlice";
-
-import Fret from "./fret/Fret";
 import styles from "./Fretboard.module.css";
+import Fret from "./fret/Fret";
 
 function Fretboard() {
-  const frets = useSelector(getFretTunings);
-  const numFrets = useSelector(getNumFrets);
-  const noteFilter = useSelector(getNoteFilter);
+  const [searchParams] = useGuitarQuery();
+  const { numFrets, tuning } = useGuitarParams();
 
   // the 'frets' state begins with open strings (the current tuning)
-  const displayFrets = frets.slice(1, numFrets + 1);
+  const fretboard = generateFretboard({ ...searchParams, tuning }).slice(
+    1,
+    numFrets + 1
+  );
 
   return (
     <div className={styles.fretboard}>
-      {displayFrets.map((fret, i) => (
-        <Fret key={i} num={i + 1} fret={fret} noteFilter={noteFilter} />
+      {fretboard.map((fret, i) => (
+        <Fret key={i} num={i + 1} fret={fret} noteFilter={searchParams.note} />
       ))}
     </div>
   );

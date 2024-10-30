@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch } from "react-redux";
 
-import { addNoteFilter, getNoteFilter } from "../features/guitar/guitarSlice";
+import { useGuitarQuery } from "../hooks/useGuitarQuery";
+// import { updateFretboard } from "../features/guitar/guitarSlice";
 import { NOTES } from "../util/tuning";
 
 import styles from "./FilterNotes.module.css";
@@ -8,7 +9,6 @@ import styles from "./FilterNotes.module.css";
 function NoteFilter({ note, onClick, currentFilter }) {
   return (
     <button
-      data-note={note}
       onClick={onClick}
       className={`${styles.filter} ${currentFilter === note ? "active" : ""}`}
     >
@@ -18,11 +18,19 @@ function NoteFilter({ note, onClick, currentFilter }) {
 }
 
 function FilterNotes() {
-  const currentFilter = useSelector(getNoteFilter);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  function handleClickFilter(e) {
-    dispatch(addNoteFilter(e.target.dataset.note));
+  const [searchParams, setSearchParams] = useGuitarQuery();
+
+  function handleClickFilter(clickedNote) {
+    let newParams;
+    if (clickedNote === searchParams.note) {
+      newParams = { ...searchParams };
+      delete newParams.note;
+    } else newParams = { ...searchParams, note: clickedNote };
+
+    setSearchParams(newParams);
+    // dispatch(updateFretboard(newParams));
   }
 
   return (
@@ -31,8 +39,8 @@ function FilterNotes() {
         <NoteFilter
           key={note}
           note={note}
-          onClick={handleClickFilter}
-          currentFilter={currentFilter}
+          onClick={() => handleClickFilter(note)}
+          currentFilter={searchParams.note}
         />
       ))}
     </div>

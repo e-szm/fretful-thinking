@@ -3,10 +3,12 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+
+  width: 75%;
 }
 
 .sliderContainer input {
-  width: 75%;
+  width: 100%;
   accent-color: #cdbaca;
 
   cursor: pointer;

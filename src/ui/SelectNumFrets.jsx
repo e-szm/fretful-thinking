@@ -1,12 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
-import { getNumFrets, updateNumFrets } from "../features/guitar/guitarSlice";
+import { useGuitarParams } from "../hooks/useGuitarParams";
+import { useGuitarNavigate } from "../hooks/useGuitarNavigate";
 
 import styles from "./SelectNumFrets.module.css";
 
 function SelectNumFrets() {
-  const numFrets = useSelector(getNumFrets);
-  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const { numFrets, tuning } = useGuitarParams();
+  const navigateGuitar = useGuitarNavigate();
+
+  function handleNumFretChange(e) {
+    const newNumFrets = e.target.value;
+    navigateGuitar({ numFrets: newNumFrets, tuning }, searchParams);
+  }
 
   return (
     <div className={styles.sliderContainer}>
@@ -17,7 +24,7 @@ function SelectNumFrets() {
         min="5"
         max="12"
         value={numFrets}
-        onChange={(e) => dispatch(updateNumFrets(Number(e.target.value)))}
+        onChange={handleNumFretChange}
       />
     </div>
   );

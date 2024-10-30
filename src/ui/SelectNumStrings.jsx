@@ -1,9 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
-import {
-  getStringTunings,
-  updateStringTunings,
-} from "../features/guitar/guitarSlice";
+import { useGuitarParams } from "../hooks/useGuitarParams";
+import { useGuitarNavigate } from "../hooks/useGuitarNavigate";
 
 import styles from "./SelectNumStrings.module.css";
 
@@ -11,21 +9,22 @@ const MIN_STRINGS = 3;
 const MAX_STRINGS = 8;
 
 function SelectNumStrings() {
-  const stringTunings = useSelector(getStringTunings);
-  const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
+  const { numFrets, tuning } = useGuitarParams();
+  const navigateGuitar = useGuitarNavigate();
 
-  const numStrings = stringTunings.length;
+  const numStrings = tuning.length;
   const atMinStrings = numStrings <= MIN_STRINGS;
   const atMaxStrings = numStrings >= MAX_STRINGS;
 
   function handleRemoveString() {
-    const newStringTunings = stringTunings.slice(0, numStrings - 1);
-    dispatch(updateStringTunings(newStringTunings));
+    const newTuning = tuning.slice(0, numStrings - 1);
+    navigateGuitar({ numFrets, tuning: newTuning }, searchParams);
   }
 
   function handleNewString() {
-    const newStringTunings = [...stringTunings, "A"];
-    dispatch(updateStringTunings(newStringTunings));
+    const newTuning = [...tuning, "A"];
+    navigateGuitar({ numFrets, tuning: newTuning }, searchParams);
   }
 
   return (

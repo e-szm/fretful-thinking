@@ -22,7 +22,7 @@ function getTuningIndices(tuning) {
   return tuning.map((note) => NOTES.indexOf(note));
 }
 
-export function generateTuning(
+function generateAllNotes(
   tuning = ["E", "A", "D", "G", "B", "E"],
   numFrets = 12
 ) {
@@ -341,4 +341,10 @@ export function generatePentatonic(note, shape = 1, tonality = "minor") {
   if (shape === 3) return generatePentShape3(note, tonality);
   if (shape === 4) return generatePentShape4(note, tonality);
   if (shape === 5) return generatePentShape5(note, tonality);
+}
+
+export function generateFretboard({ tuning, view, pentShape, tonality, note }) {
+  if (view === "all") return generateAllNotes(tuning);
+  if (view === "pentatonics")
+    return generatePentatonic(note, pentShape, tonality);
 }

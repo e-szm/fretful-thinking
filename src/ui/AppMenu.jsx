@@ -1,22 +1,40 @@
-import { useDispatch } from "react-redux";
+import { useGuitarQuery } from "../hooks/useGuitarQuery";
 
-import { setMenu } from "../features/guitar/guitarSlice";
+import Button from "./Button";
+import SelectPentShape from "../ui/SelectPentShape";
+import SelectTonality from "../ui/SelectTonality";
 
 function AppMenu() {
-  const dispatch = useDispatch();
+  const [{ view, note }, setSearchparams] = useGuitarQuery();
 
-  function handleClickFretboard() {
-    dispatch(setMenu("fretboard"));
-  }
+  function handleClickView(clickedView) {
+    if (clickedView === view) return;
 
-  function handleClickPentatonic() {
-    dispatch(setMenu("pentatonic"));
+    let newParams;
+    if (clickedView === "all") newParams = { view: clickedView, note };
+    if (clickedView === "pentatonics")
+      newParams = {
+        view: clickedView,
+        pentShape: 1,
+        tonality: "minor",
+        note,
+      };
+
+    setSearchparams(newParams);
   }
 
   return (
     <div>
-      <button onClick={handleClickFretboard}>Fretboard</button>
-      <button onClick={handleClickPentatonic}>Pentatonics</button>
+      <Button onClick={() => handleClickView("all")}>All Notes</Button>
+      <Button onClick={() => handleClickView("pentatonics")}>
+        Pentatonics
+      </Button>
+      {view === "pentatonics" && (
+        <>
+          <SelectPentShape />
+          <SelectTonality />
+        </>
+      )}
     </div>
   );
 }
