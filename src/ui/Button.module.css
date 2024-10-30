@@ -1,0 +1,32 @@
+.btn {
+  font-size: 1.6rem;
+  color: #555;
+  background-color: #cdbaca;
+  border: none;
+  border-right: 2px solid #c0a9bd;
+
+  padding: 0.6rem 1.2rem;
+
+  transition: background-color 200ms;
+  cursor: pointer;
+}
+
+.btn:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.btn:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-right: none;
+}
+
+.btn:hover {
+  background-color: #c0a9bd;
+}
+
+.btn:global(.active) {
+  background-color: #c0a9bd;
+  color: #000;
+}

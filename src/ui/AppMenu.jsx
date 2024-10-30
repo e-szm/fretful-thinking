@@ -1,38 +1,31 @@
 import { useGuitarQuery } from "../hooks/useGuitarQuery";
 
-import Button from "./Button";
+import styles from "./AppMenu.module.css";
 import SelectPentShape from "../ui/SelectPentShape";
 import SelectTonality from "../ui/SelectTonality";
+import SelectView from "./SelectView";
 
 function AppMenu() {
-  const [{ view, note }, setSearchparams] = useGuitarQuery();
-
-  function handleClickView(clickedView) {
-    if (clickedView === view) return;
-
-    let newParams;
-    if (clickedView === "all") newParams = { view: clickedView, note };
-    if (clickedView === "pentatonics")
-      newParams = {
-        view: clickedView,
-        pentShape: 1,
-        tonality: "minor",
-        note,
-      };
-
-    setSearchparams(newParams);
-  }
+  const [searchParams, setSearchParams] = useGuitarQuery();
+  const { view } = searchParams;
 
   return (
-    <div>
-      <Button onClick={() => handleClickView("all")}>All Notes</Button>
-      <Button onClick={() => handleClickView("pentatonics")}>
-        Pentatonics
-      </Button>
+    <div className={styles.appMenu}>
+      <SelectView
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
+
       {view === "pentatonics" && (
         <>
-          <SelectPentShape />
-          <SelectTonality />
+          <SelectPentShape
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
+          <SelectTonality
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
         </>
       )}
     </div>

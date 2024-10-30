@@ -1,12 +1,10 @@
-import { useGuitarQuery } from "../hooks/useGuitarQuery";
-
 import Button from "./Button";
 
-function SelectTonality() {
-  const [searchParams, setSearchParams] = useGuitarQuery();
+function SelectTonality({ searchParams, setSearchParams }) {
+  const { tonality } = searchParams;
 
   function handleClickTonality(clickedTonality) {
-    if (clickedTonality === searchParams.tonality) return;
+    if (clickedTonality === tonality) return;
 
     const newParams = { ...searchParams, tonality: clickedTonality };
     setSearchParams(newParams);
@@ -14,8 +12,18 @@ function SelectTonality() {
 
   return (
     <div>
-      <Button onClick={() => handleClickTonality("minor")}>Minor</Button>
-      <Button onClick={() => handleClickTonality("major")}>Major</Button>
+      <Button
+        active={tonality === "minor"}
+        onClick={() => handleClickTonality("minor")}
+      >
+        Minor
+      </Button>
+      <Button
+        active={tonality === "major"}
+        onClick={() => handleClickTonality("major")}
+      >
+        Major
+      </Button>
     </div>
   );
 }
