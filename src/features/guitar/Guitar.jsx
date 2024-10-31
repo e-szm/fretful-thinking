@@ -15,7 +15,7 @@ function Guitar() {
 
   return (
     <div className={styles.guitar}>
-      <Head />
+      <Head fretboard={fretboard} />
       <Fretboard fretboard={fretboard} />
     </div>
   );

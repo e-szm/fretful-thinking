@@ -1,19 +1,20 @@
-import { useSearchParams } from "react-router-dom";
+import { createSearchParams } from "react-router-dom";
 
 import { useGuitarParams } from "../../../hooks/useGuitarParams";
+import { useGuitarQuery } from "../../../hooks/useGuitarQuery";
+import { useGuitarNavigate } from "../../../hooks/useGuitarNavigate";
 import { NOTES } from "../../../util/tuning";
 
 import styles from "./Head.module.css";
 import InputTuning from "./tuning/InputTuning";
-import { useGuitarNavigate } from "../../../hooks/useGuitarNavigate";
 
-function Head() {
-  const [searchParams] = useSearchParams();
-  const view = searchParams.get("view");
-  const { numFrets, tuning } = useGuitarParams();
+function Head({ fretboard }) {
+  const [searchParams] = useGuitarQuery();
+  const { numFrets } = useGuitarParams();
   const navigateGuitar = useGuitarNavigate();
 
-  const reversedTuning = tuning.toReversed();
+  const { view, note: noteFilter } = searchParams;
+  const tuning = [...fretboard[0]];
 
   function handleFocus(e) {
     e.target.select();
@@ -26,20 +27,23 @@ function Head() {
     const newTuning = [...tuning];
     newTuning[e.target.dataset.stringnum] = value;
 
-    navigateGuitar({ numFrets, tuning: newTuning }, searchParams);
+    navigateGuitar(
+      { numFrets, tuning: newTuning.toReversed() },
+      createSearchParams(searchParams)
+    );
   }
 
   return (
     <div className={styles.tuningInputs}>
-      {reversedTuning.map((tuning, i) => (
+      {tuning.map((note, i) => (
         <InputTuning
-          note={tuning}
-          key={i + tuning}
+          key={i + note}
+          note={note}
+          noteFilter={noteFilter}
+          view={view}
+          stringNum={i}
           onTune={handleTune}
-          // Since we've reversed the array, need the opposite index to map appropriately when updating in handleTune
-          stringNum={reversedTuning.length - i - 1}
           onFocus={handleFocus}
-          disabled={view !== "all"}
         />
       ))}
     </div>

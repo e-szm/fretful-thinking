@@ -3,10 +3,10 @@ import { useSearchParams } from "react-router-dom";
 function useGuitarQuery() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const view = searchParams.get("view");
-  const pentShape = Number(searchParams.get("pentShape"));
-  const tonality = searchParams.get("tonality");
-  const note = searchParams.get("note");
+  const extractedParams = {};
+  searchParams.forEach((value, key) => (extractedParams[key] = value));
+  if (extractedParams.pentShape)
+    extractedParams.pentShape = Number(extractedParams.pentShape);
 
   function cleanAndSetSearchParams(paramsObj) {
     if (typeof paramsObj === "function") return setSearchParams(paramsObj);
@@ -19,7 +19,7 @@ function useGuitarQuery() {
     setSearchParams(newParams);
   }
 
-  return [{ view, pentShape, tonality, note }, cleanAndSetSearchParams];
+  return [extractedParams, cleanAndSetSearchParams];
 }
 
 export { useGuitarQuery };
