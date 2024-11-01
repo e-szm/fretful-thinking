@@ -1,0 +1,15 @@
+.barre {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -18%);
+
+  height: 15rem;
+  width: 0.8rem;
+
+  font-size: 1.8rem;
+  background-color: #76868b;
+  border-left: 1px solid #777;
+  border-right: 1px solid #777;
+
+  z-index: 998;
+}

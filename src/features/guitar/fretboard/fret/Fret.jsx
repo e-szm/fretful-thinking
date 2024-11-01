@@ -5,7 +5,6 @@ import String from "../string/String";
 
 function Fret({ num, fret, noteFilter }) {
   const [searchParams] = useSearchParams();
-
   const view = searchParams.get("view");
 
   // Guitar inlays typically appear on 1, 3, 5, 7, 9

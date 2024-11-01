@@ -8,6 +8,10 @@ import { NOTES } from "../../../util/tuning";
 import styles from "./Head.module.css";
 import InputTuning from "./tuning/InputTuning";
 
+function handleFocus(e) {
+  e.target.select();
+}
+
 function Head({ fretboard }) {
   const [searchParams] = useGuitarQuery();
   const { numFrets } = useGuitarParams();
@@ -15,10 +19,6 @@ function Head({ fretboard }) {
 
   const { view, note: noteFilter } = searchParams;
   const tuning = [...fretboard[0]];
-
-  function handleFocus(e) {
-    e.target.select();
-  }
 
   function handleTune(e) {
     let value = e.target.value.toUpperCase();

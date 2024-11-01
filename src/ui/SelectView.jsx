@@ -15,6 +15,12 @@ function SelectView({ searchParams, setSearchParams }) {
         tonality: "minor",
         note,
       };
+    if (clickedView === "chords")
+      newParams = {
+        view: clickedView,
+        tonality: "minor",
+        note,
+      };
 
     setSearchParams(newParams);
   }
@@ -29,6 +35,12 @@ function SelectView({ searchParams, setSearchParams }) {
         onClick={() => handleClickView("pentatonics")}
       >
         Pentatonics
+      </Button>
+      <Button
+        active={view === "chords"}
+        onClick={() => handleClickView("chords")}
+      >
+        Chords
       </Button>
     </div>
   );

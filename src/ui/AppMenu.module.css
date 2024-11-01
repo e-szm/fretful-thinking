@@ -1,4 +1,9 @@
 .appMenu {
   display: flex;
-  justify-content: space-between;
+  gap: 6.4rem;
+}
+
+.options {
+  display: flex;
+  gap: 3.2rem;
 }

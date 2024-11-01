@@ -16,18 +16,23 @@ function AppMenu() {
         setSearchParams={setSearchParams}
       />
 
-      {view === "pentatonics" && (
-        <>
-          <SelectPentShape
-            searchParams={searchParams}
-            setSearchParams={setSearchParams}
-          />
+      <div className={styles.options}>
+        {(view === "pentatonics" || view === "chords") && (
           <SelectTonality
             searchParams={searchParams}
             setSearchParams={setSearchParams}
           />
-        </>
-      )}
+        )}
+
+        {view === "pentatonics" && (
+          <>
+            <SelectPentShape
+              searchParams={searchParams}
+              setSearchParams={setSearchParams}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 }

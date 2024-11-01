@@ -2,6 +2,22 @@ const emptyFretboard = Array.from({ length: 13 }, () =>
   Array.from({ length: 6 }, () => null)
 );
 
+const standardFretboard = [
+  ["E", "B", "G", "D", "A", "E"],
+  ["F", "C", "G#", "D#", "A#", "F"],
+  ["F#", "C#", "A", "E", "B", "F#"],
+  ["G", "D", "A#", "F", "C", "G"],
+  ["G#", "D#", "B", "F#", "C#", "G#"],
+  ["A", "E", "C", "G", "D", "A"],
+  ["A#", "F", "C#", "G#", "D#", "A#"],
+  ["B", "F#", "D", "A", "E", "B"],
+  ["C", "G", "D#", "A#", "F", "C"],
+  ["C#", "G#", "E", "B", "F#", "C#"],
+  ["D", "A", "F", "C", "G", "D"],
+  ["D#", "A#", "F#", "C#", "G#", "D#"],
+  ["E", "B", "G", "D", "A", "E"],
+];
+
 export const NOTES = [
   "A",
   "A#",
@@ -45,38 +61,6 @@ function generateAllNotes(
 
   return fretboard;
 }
-
-// const aMajorPentatonic = [
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   ["A", "E", "C", "G", "D", "A"], // 5
-//   [null, null, null, null, null, null], // 6
-//   [null, null, "D", "A", "E", null], // 7
-//   ["C", "G", null, null, null, "C"], // 8
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-// ];
-
-const standardFretboard = [
-  ["E", "B", "G", "D", "A", "E"],
-  ["F", "C", "G#", "D#", "A#", "F"],
-  ["F#", "C#", "A", "E", "B", "F#"],
-  ["G", "D", "A#", "F", "C", "G"],
-  ["G#", "D#", "B", "F#", "C#", "G#"],
-  ["A", "E", "C", "G", "D", "A"],
-  ["A#", "F", "C#", "G#", "D#", "A#"],
-  ["B", "F#", "D", "A", "E", "B"],
-  ["C", "G", "D#", "A#", "F", "C"],
-  ["C#", "G#", "E", "B", "F#", "C#"],
-  ["D", "A", "F", "C", "G", "D"],
-  ["D#", "A#", "F#", "C#", "G#", "D#"],
-  ["E", "B", "G", "D", "A", "E"],
-];
 
 function generatePentShape1(note, tonality) {
   const startingString = tonality === "minor" ? 5 : 2; // Low E : G
@@ -333,7 +317,7 @@ function generatePentShape5(note, tonality) {
   return fretboard;
 }
 
-export function generatePentatonic(note, shape = 1, tonality = "minor") {
+function generatePentatonic(note, shape = 1, tonality = "minor") {
   if (!note) return emptyFretboard;
 
   if (shape === 1) return generatePentShape1(note, tonality);
@@ -343,8 +327,72 @@ export function generatePentatonic(note, shape = 1, tonality = "minor") {
   if (shape === 5) return generatePentShape5(note, tonality);
 }
 
+// const aMajorPentatonic = [
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+//   ["A", "E", "C", "G", "D", "A"], // 5
+//   [null, null, null, null, null, null], // 6
+//   [null, null, "D", "A", "E", null], // 7
+//   ["C", "G", null, null, null, "C"], // 8
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+//   [null, null, null, null, null, null],
+// ];
+
+function generateBarreChordOn6(note, tonality) {
+  const isMajor = tonality === "major";
+  const startingString = 5; // Low E
+  let scalePosition = standardFretboard.findIndex(
+    (fret) => fret[startingString] === note
+  );
+
+  const fretboard = [];
+  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
+    if (curFret === scalePosition) {
+      fretboard.push([
+        standardFretboard[curFret][0],
+        standardFretboard[curFret][1],
+        isMajor ? false : standardFretboard[curFret][2], // Barre
+        false, // Barre
+        false, // Barre
+        standardFretboard[curFret][5],
+      ]);
+      continue;
+    }
+    if (curFret === scalePosition + 1) {
+      fretboard.push([
+        null,
+        null,
+        isMajor ? standardFretboard[curFret][2] : null, // Barre
+        null,
+        null,
+        null,
+      ]);
+      continue;
+    }
+    if (curFret === scalePosition + 2) {
+      fretboard.push([
+        null,
+        null,
+        null,
+        standardFretboard[curFret][3],
+        standardFretboard[curFret][4],
+        null,
+      ]);
+      continue;
+    } else fretboard.push([...emptyFretboard[curFret]]);
+  }
+
+  return fretboard;
+}
+
 export function generateFretboard({ tuning, view, pentShape, tonality, note }) {
   if (view === "all") return generateAllNotes(tuning);
   if (view === "pentatonics")
     return generatePentatonic(note, pentShape, tonality);
+  if (view === "chords") return generateBarreChordOn6(note, tonality);
 }
