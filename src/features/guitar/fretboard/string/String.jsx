@@ -2,14 +2,12 @@ import Note from "../note/Note";
 import Barre from "../barre/Barre";
 import styles from "./String.module.css";
 
-function String({ note, root }) {
-  const isBarre = note === false;
-
+function String({ note }) {
   return (
     <div className={styles.stringContainer}>
       <div className={styles.string}></div>
-      {note && <Note note={note} root={root} />}
-      {isBarre && <Barre />}
+      {note?.note && <Note note={note} />}
+      {note?.isBarre && <Barre />}
     </div>
   );
 }

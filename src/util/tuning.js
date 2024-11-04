@@ -1,3 +1,5 @@
+import Note from "./Note";
+
 const emptyFretboard = Array.from({ length: 13 }, () =>
   Array.from({ length: 6 }, () => null)
 );
@@ -48,13 +50,13 @@ function generateAllNotes(
 
   const reversed = tuning.toReversed();
   const tuningIndices = getTuningIndices(reversed);
-  const fretboard = [reversed];
+  const fretboard = [reversed.map((note) => new Note(note))];
   for (let i = 0; i < numFrets; ++i) {
     const fret = [];
     for (let j = 0; j < tuningIndices.length; ++j) {
       tuningIndices[j] =
         tuningIndices[j] >= NOTES.length - 1 ? 0 : tuningIndices[j] + 1;
-      fret.push(NOTES.at(tuningIndices[j]));
+      fret.push(new Note(NOTES.at(tuningIndices[j])));
     }
     fretboard.push(fret);
   }
@@ -69,33 +71,37 @@ function generatePentShape1(note, tonality) {
   );
 
   const fretboard = [];
-  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
-    if (curFret === scalePosition) {
-      fretboard.push([...standardFretboard[curFret]]);
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition) {
+      fretboard.push(
+        curFret.map((fretNote) => new Note(fretNote, fretNote === note))
+      );
       continue;
     }
-    if (curFret === scalePosition + 2) {
+    if (curFretNum === scalePosition + 2) {
       fretboard.push([
         null,
         null,
-        standardFretboard[curFret][2],
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition + 3) {
+    if (curFretNum === scalePosition + 3) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
+        new Note(curFret[0], curFret[0] === note),
+        new Note(curFret[1], curFret[1] === note),
         null,
         null,
         null,
-        standardFretboard[curFret][5],
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
-    } else fretboard.push([...emptyFretboard[curFret]]);
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
   }
 
   return fretboard;
@@ -110,51 +116,53 @@ function generatePentShape2(note, tonality) {
   if (tonality === "major") scalePosition -= 1;
 
   const fretboard = [];
-  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
-    if (curFret === scalePosition) {
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition) {
       fretboard.push([
         null,
         null,
-        standardFretboard[curFret][2],
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition + 1) {
+    if (curFretNum === scalePosition + 1) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
+        new Note(curFret[0], curFret[0] === note),
+        new Note(curFret[1], curFret[1] === note),
         null,
         null,
         null,
-        standardFretboard[curFret][5],
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
     }
-    if (curFret === scalePosition + 2) {
+    if (curFretNum === scalePosition + 2) {
       fretboard.push([
         null,
         null,
-        standardFretboard[curFret][2],
+        new Note(curFret[2], curFret[2] === note),
         null,
         null,
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition + 3) {
+    if (curFretNum === scalePosition + 3) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
+        new Note(curFret[0], curFret[0] === note),
+        new Note(curFret[1], curFret[1] === note),
         null,
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
-        standardFretboard[curFret][5],
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
-    } else fretboard.push([...emptyFretboard[curFret]]);
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
   }
 
   return fretboard;
@@ -167,51 +175,53 @@ function generatePentShape3(note, tonality) {
   );
 
   const fretboard = [];
-  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
-    if (curFret === scalePosition - 1) {
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition - 1) {
       fretboard.push([
         null,
         null,
-        standardFretboard[curFret][2],
+        new Note(curFret[2], curFret[2] === note),
         null,
         null,
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition) {
+    if (curFretNum === scalePosition) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
+        new Note(curFret[0], curFret[0] === note),
+        new Note(curFret[1], curFret[1] === note),
         null,
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
-        standardFretboard[curFret][5],
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
     }
-    if (curFret === scalePosition + 2) {
+    if (curFretNum === scalePosition + 2) {
       fretboard.push([
-        standardFretboard[curFret][0],
+        new Note(curFret[0], curFret[0] === note),
         null,
-        standardFretboard[curFret][2],
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
-        standardFretboard[curFret][5],
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
     }
-    if (curFret === scalePosition + 3) {
+    if (curFretNum === scalePosition + 3) {
       fretboard.push([
         null,
-        standardFretboard[curFret][1],
+        new Note(curFret[1], curFret[1] === note),
         null,
         null,
         null,
         null,
       ]);
       continue;
-    } else fretboard.push([...emptyFretboard[curFret]]);
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
   }
 
   return fretboard;
@@ -226,51 +236,53 @@ function generatePentShape4(note, tonality) {
   if (tonality === "major") scalePosition -= 1;
 
   const fretboard = [];
-  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
-    if (curFret === scalePosition) {
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition) {
       fretboard.push([
-        standardFretboard[curFret][0],
+        new Note(curFret[0], curFret[0] === note),
         null,
-        standardFretboard[curFret][2],
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
-        standardFretboard[curFret][5],
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
     }
-    if (curFret === scalePosition + 1) {
+    if (curFretNum === scalePosition + 1) {
       fretboard.push([
         null,
-        standardFretboard[curFret][1],
+        new Note(curFret[1], curFret[1] === note),
         null,
         null,
-        null,
-        null,
-      ]);
-      continue;
-    }
-    if (curFret === scalePosition + 2) {
-      fretboard.push([
-        null,
-        null,
-        standardFretboard[curFret][2],
-        standardFretboard[curFret][3],
         null,
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition + 3) {
+    if (curFretNum === scalePosition + 2) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
         null,
         null,
-        standardFretboard[curFret][4],
-        standardFretboard[curFret][5],
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
+        null,
+        null,
       ]);
       continue;
-    } else fretboard.push([...emptyFretboard[curFret]]);
+    }
+    if (curFretNum === scalePosition + 3) {
+      fretboard.push([
+        new Note(curFret[0], curFret[0] === note),
+        new Note(curFret[1], curFret[1] === note),
+        null,
+        null,
+        new Note(curFret[4], curFret[4] === note),
+        new Note(curFret[5], curFret[5] === note),
+      ]);
+      continue;
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
   }
 
   return fretboard;
@@ -285,33 +297,37 @@ function generatePentShape5(note, tonality) {
   if (tonality === "major") scalePosition -= 1;
 
   const fretboard = [];
-  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
-    if (curFret === scalePosition) {
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition) {
       fretboard.push([
         null,
         null,
-        standardFretboard[curFret][2],
-        standardFretboard[curFret][3],
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
         null,
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition + 1) {
+    if (curFretNum === scalePosition + 1) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
+        new Note(curFret[0], curFret[0] === note),
+        new Note(curFret[1], curFret[1] === note),
         null,
         null,
-        standardFretboard[curFret][4],
-        standardFretboard[curFret][5],
+        new Note(curFret[4], curFret[4] === note),
+        new Note(curFret[5], curFret[5] === note),
       ]);
       continue;
     }
-    if (curFret === scalePosition + 3) {
-      fretboard.push([...standardFretboard[curFret]]);
+    if (curFretNum === scalePosition + 3) {
+      fretboard.push(
+        curFret.map((fretNote) => new Note(fretNote, fretNote === note))
+      );
       continue;
-    } else fretboard.push([...emptyFretboard[curFret]]);
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
   }
 
   return fretboard;
@@ -351,48 +367,115 @@ function generateBarreChordOn6(note, tonality) {
   );
 
   const fretboard = [];
-  for (let curFret = 0; curFret < emptyFretboard.length; ++curFret) {
-    if (curFret === scalePosition) {
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition) {
       fretboard.push([
-        standardFretboard[curFret][0],
-        standardFretboard[curFret][1],
-        isMajor ? false : standardFretboard[curFret][2], // Barre
-        false, // Barre
-        false, // Barre
-        standardFretboard[curFret][5],
+        new Note(curFret[0], curFret[0] === note, true),
+        new Note(curFret[1], curFret[1] === note, true),
+        isMajor
+          ? new Note(null, false, true) // Barre
+          : new Note(curFret[2], curFret[2] === note, true),
+        new Note(null, false, true), // Barre
+        new Note(null, false, true), // Barre
+        new Note(curFret[5], curFret[5] === note, true),
       ]);
       continue;
     }
-    if (curFret === scalePosition + 1) {
+    if (curFretNum === scalePosition + 1) {
       fretboard.push([
         null,
         null,
-        isMajor ? standardFretboard[curFret][2] : null, // Barre
+        isMajor ? new Note(curFret[2], curFret[2] === note) : null, // Barre
         null,
         null,
         null,
       ]);
       continue;
     }
-    if (curFret === scalePosition + 2) {
+    if (curFretNum === scalePosition + 2) {
       fretboard.push([
         null,
         null,
         null,
-        standardFretboard[curFret][3],
-        standardFretboard[curFret][4],
+        new Note(curFret[3], curFret[3] === note),
+        new Note(curFret[4], curFret[4] === note),
         null,
       ]);
       continue;
-    } else fretboard.push([...emptyFretboard[curFret]]);
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
   }
 
   return fretboard;
 }
 
-export function generateFretboard({ tuning, view, pentShape, tonality, note }) {
+function generateBarreChordOn5(note, tonality) {
+  const isMajor = tonality === "major";
+  const startingString = 4; // A
+  let scalePosition = standardFretboard.findIndex(
+    (fret) => fret[startingString] === note
+  );
+
+  const fretboard = [];
+  for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
+    const curFret = standardFretboard[curFretNum];
+
+    if (curFretNum === scalePosition) {
+      fretboard.push([
+        new Note(curFret[0], curFret[0] === note, true),
+        new Note(null, null, true),
+        new Note(null, null, true),
+        new Note(null, null, true),
+        new Note(curFret[4], curFret[4] === note, true), // Barre
+        null,
+      ]);
+      continue;
+    }
+    if (curFretNum === scalePosition + 1) {
+      fretboard.push([
+        null,
+        isMajor ? null : new Note(curFret[1], curFret[1] === note),
+        null,
+        null,
+        null,
+        null,
+      ]);
+      continue;
+    }
+    if (curFretNum === scalePosition + 2) {
+      fretboard.push([
+        null,
+        isMajor ? new Note(curFret[1], curFret[1] === note) : null,
+        new Note(curFret[2], curFret[2] === note),
+        new Note(curFret[3], curFret[3] === note),
+        null,
+        null,
+      ]);
+      continue;
+    } else fretboard.push([...emptyFretboard[curFretNum]]);
+  }
+
+  return fretboard;
+}
+
+function generateChord(rootString, note, tonality) {
+  if (!note) return emptyFretboard;
+
+  if (rootString === 6) return generateBarreChordOn6(note, tonality);
+  if (rootString === 5) return generateBarreChordOn5(note, tonality);
+}
+
+export function generateFretboard({
+  tuning,
+  view,
+  pentShape,
+  tonality,
+  note,
+  root,
+}) {
   if (view === "all") return generateAllNotes(tuning);
   if (view === "pentatonics")
     return generatePentatonic(note, pentShape, tonality);
-  if (view === "chords") return generateBarreChordOn6(note, tonality);
+  if (view === "chords") return generateChord(root, note, tonality);
 }

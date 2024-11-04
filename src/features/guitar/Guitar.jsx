@@ -12,6 +12,7 @@ function Guitar() {
 
   // the 'frets' state begins with open strings (the current tuning)
   const fretboard = generateFretboard({ ...searchParams, tuning });
+  console.log(fretboard);
 
   return (
     <div className={styles.guitar}>

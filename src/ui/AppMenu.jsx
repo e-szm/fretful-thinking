@@ -4,6 +4,7 @@ import styles from "./AppMenu.module.css";
 import SelectPentShape from "../ui/SelectPentShape";
 import SelectTonality from "../ui/SelectTonality";
 import SelectView from "./SelectView";
+import SelectRootString from "./SelectRootString";
 
 function AppMenu() {
   const [searchParams, setSearchParams] = useGuitarQuery();
@@ -31,6 +32,13 @@ function AppMenu() {
               setSearchParams={setSearchParams}
             />
           </>
+        )}
+
+        {view === "chords" && (
+          <SelectRootString
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
         )}
       </div>
     </div>

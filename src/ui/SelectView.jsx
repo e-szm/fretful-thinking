@@ -20,6 +20,7 @@ function SelectView({ searchParams, setSearchParams }) {
         view: clickedView,
         tonality: "minor",
         note,
+        root: 6,
       };
 
     setSearchParams(newParams);

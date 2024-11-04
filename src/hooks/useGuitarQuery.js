@@ -7,6 +7,7 @@ function useGuitarQuery() {
   searchParams.forEach((value, key) => (extractedParams[key] = value));
   if (extractedParams.pentShape)
     extractedParams.pentShape = Number(extractedParams.pentShape);
+  if (extractedParams.root) extractedParams.root = Number(extractedParams.root);
 
   function cleanAndSetSearchParams(paramsObj) {
     if (typeof paramsObj === "function") return setSearchParams(paramsObj);

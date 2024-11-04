@@ -18,7 +18,7 @@ function Head({ fretboard }) {
   const navigateGuitar = useGuitarNavigate();
 
   const { view, note: noteFilter } = searchParams;
-  const tuning = [...fretboard[0]];
+  const tuning = fretboard[0].map((note) => note?.note || null);
 
   function handleTune(e) {
     let value = e.target.value.toUpperCase();

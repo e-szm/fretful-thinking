@@ -1,9 +1,9 @@
 .barre {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, -18%);
+  transform: translateX(-50%);
 
-  height: 15rem;
+  height: 100%;
   width: 0.8rem;
 
   font-size: 1.8rem;
