@@ -1,9 +1,9 @@
 .btn {
   font-size: 1.6rem;
   color: #555;
-  background-color: #cdbaca;
+  background-color: #fdfdfd;
+  border-radius: 6px;
   border: none;
-  border-right: 2px solid #c0a9bd;
 
   padding: 0.6rem 1.2rem;
 
@@ -11,19 +11,8 @@
   cursor: pointer;
 }
 
-.btn:first-child {
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
-}
-
-.btn:last-child {
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-right: none;
-}
-
 .btn:hover {
-  background-color: #c0a9bd;
+  background-color: #ece5eb;
 }
 
 .btn:global(.active) {

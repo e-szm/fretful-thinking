@@ -11,10 +11,12 @@ html {
 
 body {
   font-size: 1.6rem;
-  background-color: #f4f2f3;
+  background-color: #fdfdfd;
 }
 
 #root {
   max-width: 130rem;
   margin: auto;
 }
+
+/* f4f2f3 */

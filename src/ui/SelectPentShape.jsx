@@ -1,3 +1,4 @@
+import ButtonGroup from "./ButtonGroup";
 import Button from "./Button";
 
 function SelectPentShape({ searchParams, setSearchParams }) {
@@ -11,7 +12,7 @@ function SelectPentShape({ searchParams, setSearchParams }) {
   }
 
   return (
-    <div>
+    <ButtonGroup>
       <Button active={pentShape === 1} onClick={() => handleClickPentShape(1)}>
         Shape 1
       </Button>
@@ -27,7 +28,7 @@ function SelectPentShape({ searchParams, setSearchParams }) {
       <Button active={pentShape === 5} onClick={() => handleClickPentShape(5)}>
         Shape 5
       </Button>
-    </div>
+    </ButtonGroup>
   );
 }
 

@@ -1,9 +1,20 @@
 .appMenu {
-  display: flex;
-  gap: 6.4rem;
+  margin-bottom: 1.8rem;
 }
 
-.options {
+.primaryOptions {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 3.2rem;
+
+  padding-bottom: 2rem;
+  margin-bottom: 2.4rem;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.secondaryOptions {
   display: flex;
   gap: 3.2rem;
+
+  min-height: 3.8rem;
 }

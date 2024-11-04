@@ -1,5 +1,6 @@
 import { useRef } from "react";
 
+import ButtonGroup from "./ButtonGroup";
 import Button from "./Button";
 
 function updateParamRefs(searchParams, ref) {
@@ -38,7 +39,7 @@ function SelectView({ searchParams, setSearchParams }) {
   }
 
   return (
-    <div>
+    <ButtonGroup>
       <Button active={view === "all"} onClick={() => handleClickView("all")}>
         All Notes
       </Button>
@@ -54,7 +55,7 @@ function SelectView({ searchParams, setSearchParams }) {
       >
         Chords
       </Button>
-    </div>
+    </ButtonGroup>
   );
 }
 

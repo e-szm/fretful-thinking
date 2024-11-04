@@ -1,0 +1,9 @@
+.btnGroup {
+  display: flex;
+  gap: 0.3rem;
+
+  background-color: #fdfdfd;
+  border-radius: 6px;
+
+  padding: 0.3rem;
+}

@@ -1,3 +1,4 @@
+import ButtonGroup from "./ButtonGroup";
 import Button from "./Button";
 
 function SelectTonality({ searchParams, setSearchParams }) {
@@ -11,7 +12,7 @@ function SelectTonality({ searchParams, setSearchParams }) {
   }
 
   return (
-    <div>
+    <ButtonGroup>
       <Button
         active={tonality === "minor"}
         onClick={() => handleClickTonality("minor")}
@@ -24,7 +25,7 @@ function SelectTonality({ searchParams, setSearchParams }) {
       >
         Major
       </Button>
-    </div>
+    </ButtonGroup>
   );
 }
 
