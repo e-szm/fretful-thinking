@@ -10,7 +10,7 @@ function Fret({ num, fret, noteFilter }) {
   // Guitar inlays typically appear on 1, 3, 5, 7, 9
   // On fret 12, there is typically a double inlay
   const doubleInlay = num === 12;
-  const showInlay = (num % 2 !== 0 && num !== 11) || doubleInlay;
+  const showInlay = (num % 2 !== 0 && num !== 11 && num !== 13) || doubleInlay;
 
   return (
     <>

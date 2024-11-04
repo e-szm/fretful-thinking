@@ -8,12 +8,12 @@
   height: 4.2rem;
   width: 4.2rem;
   padding: 0.3rem;
-  border: 2px solid #c0a9bd;
+  border: 1px solid #c0a9bd;
   border-radius: 100%;
 
   color: #555;
   font-size: 1.8rem;
-  background-color: #ece5eb;
+  background-color: #fdfdfd;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 
   transition: transform 200ms, background-color 200ms;

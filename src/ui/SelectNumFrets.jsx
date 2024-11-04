@@ -22,7 +22,7 @@ function SelectNumFrets() {
         id="select-num-frets"
         type="range"
         min="5"
-        max="12"
+        max="14"
         value={numFrets}
         onChange={handleNumFretChange}
       />

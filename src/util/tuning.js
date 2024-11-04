@@ -1,6 +1,6 @@
 import Note from "./Note";
 
-const emptyFretboard = Array.from({ length: 13 }, () =>
+const emptyFretboard = Array.from({ length: 15 }, () =>
   Array.from({ length: 6 }, () => null)
 );
 
@@ -18,6 +18,8 @@ const standardFretboard = [
   ["D", "A", "F", "C", "G", "D"],
   ["D#", "A#", "F#", "C#", "G#", "D#"],
   ["E", "B", "G", "D", "A", "E"],
+  ["F", "C", "G#", "D#", "A#", "F"],
+  ["F#", "C#", "A", "E", "B", "F#"],
 ];
 
 export const NOTES = [
@@ -42,7 +44,7 @@ function getTuningIndices(tuning) {
 
 function generateAllNotes(
   tuning = ["E", "A", "D", "G", "B", "E"],
-  numFrets = 12
+  numFrets = 14
 ) {
   const numStrings = tuning.length;
   if (numStrings < 3 || numStrings > 8)
