@@ -1,26 +1,37 @@
+import { useRef } from "react";
+
 import Button from "./Button";
+
+function updateParamRefs(searchParams, ref) {
+  for (let param in searchParams) {
+    ref.current[param] = searchParams[param];
+  }
+}
 
 function SelectView({ searchParams, setSearchParams }) {
   const { view, note } = searchParams;
+  const allParamsRef = useRef({ ...searchParams });
 
   function handleClickView(clickedView) {
     if (clickedView === view) return;
+
+    updateParamRefs(searchParams, allParamsRef);
 
     let newParams;
     if (clickedView === "all") newParams = { view: clickedView, note };
     if (clickedView === "pentatonics")
       newParams = {
         view: clickedView,
-        pentShape: 1,
-        tonality: "minor",
+        pentShape: allParamsRef.current.pentShape || 1,
+        tonality: allParamsRef.current.tonality || "minor",
         note,
       };
     if (clickedView === "chords")
       newParams = {
         view: clickedView,
-        tonality: "minor",
+        tonality: allParamsRef.current.tonality || "minor",
         note,
-        root: 6,
+        root: allParamsRef.current.root || 6,
       };
 
     setSearchParams(newParams);
