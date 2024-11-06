@@ -28,5 +28,19 @@
 }
 
 .filter:hover {
+  background-color: #ece5eb;
+}
+
+.filter:global(.active):hover {
   background-color: #c0a9bd;
+}
+
+.filter:global(.correct) {
+  border: none;
+  background-color: #afe1af;
+}
+
+.filter:global(.wrong) {
+  border: none;
+  background-color: #c48484;
 }

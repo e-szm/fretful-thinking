@@ -6,8 +6,9 @@ import SelectTonality from "../ui/SelectTonality";
 import SelectView from "./SelectView";
 import SelectRootString from "./SelectRootString";
 import FilterNotes from "./FilterNotes";
+import Quiz from "../features/quiz/quiz";
 
-function AppMenu() {
+function AppMenu({ fretboard }) {
   const [searchParams, setSearchParams] = useGuitarQuery();
   const { view } = searchParams;
 
@@ -18,10 +19,12 @@ function AppMenu() {
           searchParams={searchParams}
           setSearchParams={setSearchParams}
         />
-        <FilterNotes />
+        <FilterNotes fretboard={fretboard} />
       </div>
 
       <div className={styles.secondaryOptions}>
+        {view === "all" && <Quiz />}
+
         {(view === "pentatonics" || view === "chords") && (
           <SelectTonality
             searchParams={searchParams}

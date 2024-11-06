@@ -23,7 +23,7 @@ function Fret({ num, fret, noteFilter }) {
         )}
         {noteFilter && view === "all"
           ? fret.map((note, i) => (
-              <String key={i} note={noteFilter === note.note ? note : ""} />
+              <String key={i} note={noteFilter === note?.note ? note : ""} />
             ))
           : fret.map((note, i) => <String key={i} note={note} />)}
       </div>

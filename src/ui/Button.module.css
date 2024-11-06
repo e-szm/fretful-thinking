@@ -11,11 +11,30 @@
   cursor: pointer;
 }
 
-.btn:hover {
+.btn:global(.active),
+.btn:global(.btn--cta) {
+  background-color: #c0a9bd;
+  color: #000;
+}
+
+.btn:global(.btn--toggle):hover {
   background-color: #ece5eb;
 }
 
-.btn:global(.active) {
+.btn:global(.btn--cta):hover {
+  background-color: #9a8797;
+}
+
+.btn:global(.active):hover {
   background-color: #c0a9bd;
-  color: #000;
+}
+
+.btn:disabled {
+  color: #555;
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background-color: #d3d3d3;
 }

@@ -1,5 +1,7 @@
 import { useRef } from "react";
 
+import { useQuiz } from "../features/quiz/QuizContext";
+
 import ButtonGroup from "./ButtonGroup";
 import Button from "./Button";
 
@@ -12,6 +14,8 @@ function updateParamRefs(searchParams, ref) {
 function SelectView({ searchParams, setSearchParams }) {
   const { view, note } = searchParams;
   const allParamsRef = useRef({ ...searchParams });
+  const { status: quizStatus } = useQuiz();
+  const disabled = quizStatus === "in-progress";
 
   function handleClickView(clickedView) {
     if (clickedView === view) return;
@@ -39,19 +43,25 @@ function SelectView({ searchParams, setSearchParams }) {
   }
 
   return (
-    <ButtonGroup>
-      <Button active={view === "all"} onClick={() => handleClickView("all")}>
+    <ButtonGroup disabled={disabled}>
+      <Button
+        active={view === "all"}
+        onClick={() => handleClickView("all")}
+        disabled={disabled}
+      >
         All Notes
       </Button>
       <Button
         active={view === "pentatonics"}
         onClick={() => handleClickView("pentatonics")}
+        disabled={disabled}
       >
         Pentatonics
       </Button>
       <Button
         active={view === "chords"}
         onClick={() => handleClickView("chords")}
+        disabled={disabled}
       >
         Chords
       </Button>

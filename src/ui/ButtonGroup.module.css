@@ -8,3 +8,8 @@
 
   padding: 0.3rem;
 }
+
+.btnGroup:global(.disabled) {
+  background-color: #d3d3d3;
+  border: 1px solid #999;
+}

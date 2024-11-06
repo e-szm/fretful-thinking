@@ -44,7 +44,8 @@ function getTuningIndices(tuning) {
 
 function generateAllNotes(
   tuning = ["E", "A", "D", "G", "B", "E"],
-  numFrets = 14
+  numFrets = 14,
+  hidden = false
 ) {
   const numStrings = tuning.length;
   if (numStrings < 3 || numStrings > 8)
@@ -58,7 +59,7 @@ function generateAllNotes(
     for (let j = 0; j < tuningIndices.length; ++j) {
       tuningIndices[j] =
         tuningIndices[j] >= NOTES.length - 1 ? 0 : tuningIndices[j] + 1;
-      fret.push(new Note(NOTES.at(tuningIndices[j])));
+      fret.push(new Note(NOTES.at(tuningIndices[j]), false, false, hidden));
     }
     fretboard.push(fret);
   }
@@ -345,22 +346,6 @@ function generatePentatonic(note, shape = 1, tonality = "minor") {
   if (shape === 5) return generatePentShape5(note, tonality);
 }
 
-// const aMajorPentatonic = [
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   ["A", "E", "C", "G", "D", "A"], // 5
-//   [null, null, null, null, null, null], // 6
-//   [null, null, "D", "A", "E", null], // 7
-//   ["C", "G", null, null, null, "C"], // 8
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-//   [null, null, null, null, null, null],
-// ];
-
 function generateBarreChordOn6(note, tonality) {
   const isMajor = tonality === "major";
   const startingString = 5; // Low E
@@ -470,13 +455,20 @@ function generateChord(rootString, note, tonality) {
 
 export function generateFretboard({
   tuning,
+  numFrets,
   view,
   pentShape,
   tonality,
   note,
   root,
+  quizStatus,
 }) {
-  if (view === "all") return generateAllNotes(tuning);
+  if (view === "all")
+    return generateAllNotes(
+      tuning,
+      numFrets,
+      quizStatus === "idle" ? false : true
+    );
   if (view === "pentatonics")
     return generatePentatonic(note, pentShape, tonality);
   if (view === "chords") return generateChord(root, note, tonality);

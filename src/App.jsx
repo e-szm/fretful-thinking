@@ -4,6 +4,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { QuizProvider } from "./features/quiz/QuizContext";
+
 import AppLayout from "./ui/AppLayout";
 import GuitarDisplay from "./ui/GuitarDisplay";
 
@@ -19,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/guitar/:numFrets/:tuning",
-        element: <GuitarDisplay />,
+        element: (
+          <QuizProvider>
+            <GuitarDisplay />
+          </QuizProvider>
+        ),
       },
     ],
   },

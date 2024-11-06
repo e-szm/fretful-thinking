@@ -1,8 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-import Nav from "./Nav";
-
 import styles from "./AppLayout.module.css";
+import Nav from "./Nav";
 
 function AppLayout() {
   return (

@@ -6,7 +6,7 @@ function String({ note }) {
   return (
     <div className={styles.stringContainer}>
       <div className={styles.string}></div>
-      {note?.note && <Note note={note} />}
+      {note?.note && !note.hidden && <Note note={note} />}
       {note?.isBarre && <Barre />}
     </div>
   );
