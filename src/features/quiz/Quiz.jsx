@@ -5,6 +5,7 @@ import SelectTimer from "../../ui/SelectTimer";
 import Timer from "../../ui/timer/Timer";
 import EndQuiz from "./EndQuiz";
 import StartQuiz from "./StartQuiz";
+import ResetTuning from "../guitar/head/tuning/ResetTuning";
 
 function Quiz() {
   const { status, startQuiz, endQuiz } = useQuiz();
@@ -13,6 +14,7 @@ function Quiz() {
     <>
       {status === "idle" && (
         <>
+          <ResetTuning />
           <StartQuiz startQuiz={startQuiz} />
           <SelectNumStrings />
           <SelectTimer />
