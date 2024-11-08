@@ -9,7 +9,7 @@ function InputTuning({
   view,
   disabled,
 }) {
-  const isInScale = note && view === "pentatonics";
+  const isInScale = note && view !== "all";
   const isScaleKey = isInScale && note === noteFilter;
 
   return (
