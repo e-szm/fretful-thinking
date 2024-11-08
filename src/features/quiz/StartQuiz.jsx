@@ -14,7 +14,7 @@ function StartQuiz({ startQuiz }) {
 
   return (
     <Button type="cta" onClick={handleClickStart}>
-      Guess Random Notes
+      Start Challenge
     </Button>
   );
 }

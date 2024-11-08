@@ -53,7 +53,9 @@ function generateAllNotes(
 
   const reversed = tuning.toReversed();
   const tuningIndices = getTuningIndices(reversed);
-  const fretboard = [reversed.map((note) => new Note(note))];
+  const fretboard = [
+    reversed.map((note) => new Note(note, false, false, hidden)),
+  ];
   for (let i = 0; i < numFrets; ++i) {
     const fret = [];
     for (let j = 0; j < tuningIndices.length; ++j) {

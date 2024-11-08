@@ -1,6 +1,14 @@
 import styles from "./InputTuning.module.css";
 
-function InputTuning({ note, noteFilter, stringNum, onTune, onFocus, view }) {
+function InputTuning({
+  note,
+  noteFilter,
+  stringNum,
+  onTune,
+  onFocus,
+  view,
+  disabled,
+}) {
   const isInScale = note && view === "pentatonics";
   const isScaleKey = isInScale && note === noteFilter;
 
@@ -15,7 +23,7 @@ function InputTuning({ note, noteFilter, stringNum, onTune, onFocus, view }) {
       data-stringnum={stringNum}
       onChange={onTune}
       onFocus={onFocus}
-      disabled={view !== "all"}
+      disabled={disabled}
     />
   );
 }

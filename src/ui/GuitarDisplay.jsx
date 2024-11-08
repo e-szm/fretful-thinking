@@ -20,10 +20,11 @@ function GuitarDisplay() {
     ...params,
     quizStatus,
   });
-  if (quizString !== null) {
+  if (quizString !== null && fretboard[quizFret]) {
     const correctAnswer = fretboard[quizFret][quizString];
     correctAnswer.hidden = false;
     correctAnswer.note = " ";
+    correctAnswer.isRoot = true; // Set as gold
   }
 
   return (

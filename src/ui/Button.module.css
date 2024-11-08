@@ -1,7 +1,5 @@
 .btn {
   font-size: 1.6rem;
-  color: #555;
-  background-color: #fdfdfd;
   border-radius: 6px;
   border: none;
 
@@ -11,14 +9,18 @@
   cursor: pointer;
 }
 
-.btn:global(.active),
-.btn:global(.btn--cta) {
-  background-color: #c0a9bd;
-  color: #000;
+.btn:global(.btn--toggle) {
+  background-color: #fdfdfd;
 }
 
 .btn:global(.btn--toggle):hover {
   background-color: #ece5eb;
+}
+
+.btn:global(.active),
+.btn:global(.btn--cta) {
+  background-color: #c0a9bd;
+  color: #000;
 }
 
 .btn:global(.btn--cta):hover {
@@ -27,6 +29,15 @@
 
 .btn:global(.active):hover {
   background-color: #c0a9bd;
+}
+
+.btn:global(.btn--small) {
+  border-radius: 100%;
+  height: 3.2rem;
+  width: 3.2rem;
+  padding: 0;
+
+  font-size: 1.8rem;
 }
 
 .btn:disabled {

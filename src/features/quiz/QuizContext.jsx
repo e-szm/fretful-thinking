@@ -36,7 +36,7 @@ function reducer(state, action) {
 }
 
 function QuizProvider({ children }) {
-  const [{ status, numFrets, numStrings, string, fret }, dispatch] = useReducer(
+  const [{ status, string, fret }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -58,8 +58,6 @@ function QuizProvider({ children }) {
     <QuizContext.Provider
       value={{
         status,
-        numFrets,
-        numStrings,
         string,
         fret,
 
@@ -75,7 +73,7 @@ function QuizProvider({ children }) {
 
 function useQuiz() {
   const contextValue = useContext(QuizContext);
-  if (!contextValue) throw new Error("QuizContext used outside provider.");
+  if (!contextValue) throw new Error("QuizContext used outside provider");
 
   return contextValue;
 }

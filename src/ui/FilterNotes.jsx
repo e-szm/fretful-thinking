@@ -1,4 +1,5 @@
 import { useQuiz } from "../features/quiz/QuizContext";
+import { useTimer } from "./timer/TimerContext";
 import { useGuitarParams } from "../hooks/useGuitarParams";
 import { useGuitarQuery } from "../hooks/useGuitarQuery";
 
@@ -26,6 +27,7 @@ function FilterNotes({ fretboard }) {
     fret: quizFret,
     nextNote,
   } = useQuiz();
+  const { reset: resetTimer } = useTimer();
 
   function handleClickFilter(clickedNote) {
     let newParams;
@@ -45,6 +47,7 @@ function FilterNotes({ fretboard }) {
       clickedEl.classList.add("correct");
       setTimeout(() => clickedEl.classList.remove("correct"), 500);
       nextNote(numFrets, tuning);
+      resetTimer();
       return;
     }
 

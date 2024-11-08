@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useGuitarParams } from "../hooks/useGuitarParams";
 import { useGuitarNavigate } from "../hooks/useGuitarNavigate";
 
-import styles from "./SelectNumStrings.module.css";
+import Incrementer from "./Incrementer";
 
 const MIN_STRINGS = 3;
 const MAX_STRINGS = 8;
@@ -28,23 +28,14 @@ function SelectNumStrings() {
   }
 
   return (
-    <div className={styles.btnContainer}>
-      <button
-        className={styles.btn}
-        onClick={handleRemoveString}
-        disabled={atMinStrings}
-      >
-        -
-      </button>
-      <p>{numStrings} strings</p>
-      <button
-        className={styles.btn}
-        onClick={handleNewString}
-        disabled={atMaxStrings}
-      >
-        +
-      </button>
-    </div>
+    <Incrementer
+      onDecrement={handleRemoveString}
+      onIncrement={handleNewString}
+      disableDec={atMinStrings}
+      disableInc={atMaxStrings}
+    >
+      {numStrings} strings
+    </Incrementer>
   );
 }
 

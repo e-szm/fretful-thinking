@@ -22,6 +22,17 @@ function Button({ type, active, onClick, disabled, children }) {
         {children}
       </button>
     );
+
+  if (type === "small")
+    return (
+      <button
+        className={`${styles.btn} btn--cta btn--small`}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        {children}
+      </button>
+    );
 }
 
 export default Button;
