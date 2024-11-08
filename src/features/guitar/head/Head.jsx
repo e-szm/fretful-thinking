@@ -43,7 +43,7 @@ function Head({ fretboard }) {
     <div className={styles.tuningInputs}>
       {tuning.map((note, i) => (
         <InputTuning
-          key={i + note}
+          key={i}
           note={note}
           noteFilter={noteFilter}
           view={view}
