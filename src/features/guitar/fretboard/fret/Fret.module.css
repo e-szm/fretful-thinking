@@ -27,10 +27,13 @@
   left: 50%;
   transform: translateX(-50%);
 
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14.2rem;
+  justify-content: space-evenly;
+  /* gap: 14.2rem; */
 }
 
 .inlay {
