@@ -21,7 +21,12 @@ function Timer() {
   const { timeLimit, tick, nextTick } = useTimer();
   const intervalRef = useRef(null);
 
-  const displayTime = formatSeconds(tick);
+  const displayTime =
+    timeLimit === 0 ? (
+      <div className={styles.infin}>&infin;</div>
+    ) : (
+      formatSeconds(tick)
+    );
 
   useEffect(() => {
     if (timeLimit === 0) return;
@@ -35,7 +40,7 @@ function Timer() {
     return () => clearInterval(intervalId);
   }, [timeLimit, tick, nextTick, nextNote, numFrets, tuning]);
 
-  return <div className={styles.timer}>{timeLimit !== 0 && displayTime}</div>;
+  return <div className={styles.timer}>{displayTime}</div>;
 }
 
 export default Timer;
