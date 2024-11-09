@@ -13,7 +13,7 @@
   border: 1px solid #777;
 }
 
-.input:global(.scaleKey) {
+.input:global(.root) {
   color: #000;
   background-color: #cbab58;
   border: 1px solid #777;

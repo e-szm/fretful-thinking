@@ -20,9 +20,9 @@ function Head({ fretboard }) {
   const { numFrets } = useGuitarParams();
   const navigateGuitar = useGuitarNavigate();
 
-  const { view, note: noteFilter } = searchParams;
+  const { view } = searchParams;
   const tuning = fretboard[0].map((note) => {
-    if (note && !note.hidden) return note.note;
+    if (note && !note.hidden) return note;
     return null;
   });
 
@@ -30,7 +30,7 @@ function Head({ fretboard }) {
     let value = e.target.value.toUpperCase();
     if (!NOTES.includes(value)) return;
 
-    const newTuning = [...tuning];
+    const newTuning = tuning.map((note) => note.note);
     newTuning[e.target.dataset.stringnum] = value;
 
     navigateGuitar(
@@ -45,7 +45,6 @@ function Head({ fretboard }) {
         <InputTuning
           key={i}
           note={note}
-          noteFilter={noteFilter}
           view={view}
           stringNum={i}
           onTune={handleTune}

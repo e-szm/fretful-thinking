@@ -455,6 +455,21 @@ function generateChord(rootString, note, tonality) {
   if (rootString === 5) return generateBarreChordOn5(note, tonality);
 }
 
+function addOpenStrings(fretboard) {
+  fretboard[0].forEach((note, i) => {
+    if (note === null)
+      fretboard[0][i] = new Note(
+        standardFretboard[0][i],
+        false,
+        false,
+        false,
+        false
+      );
+  });
+
+  return fretboard;
+}
+
 export function generateFretboard({
   tuning,
   numFrets,
@@ -472,6 +487,7 @@ export function generateFretboard({
       quizStatus === "idle" ? false : true
     );
   if (view === "pentatonics")
-    return generatePentatonic(note, pentShape, tonality);
-  if (view === "chords") return generateChord(root, note, tonality);
+    return addOpenStrings(generatePentatonic(note, pentShape, tonality));
+  if (view === "chords")
+    return addOpenStrings(generateChord(root, note, tonality));
 }
