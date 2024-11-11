@@ -1,6 +1,6 @@
 import styles from "./Guitar.module.css";
 import Fretboard from "./fretboard/Fretboard";
-import Head from "./head/head";
+import Head from "./head/Head";
 
 function Guitar({ fretboard }) {
   return (
