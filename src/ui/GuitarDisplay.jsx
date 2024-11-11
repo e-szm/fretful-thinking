@@ -1,6 +1,6 @@
 import { useGuitarQuery } from "../hooks/useGuitarQuery";
 import { useGuitarParams } from "../hooks/useGuitarParams";
-import { generateFretboard } from "../util/tuning";
+import { generateFretboard } from "../util/generateFretboard/generateFretboard";
 
 import { useQuiz } from "../features/quiz/QuizContext";
 

@@ -5,7 +5,7 @@ import { useGuitarQuery } from "../../../hooks/useGuitarQuery";
 import { useGuitarNavigate } from "../../../hooks/useGuitarNavigate";
 import { useQuiz } from "../../quiz/QuizContext";
 
-import { NOTES } from "../../../util/tuning";
+import { NOTES } from "../../../util/generateFretboard/generateFretboard";
 
 import styles from "./Head.module.css";
 import InputTuning from "./tuning/InputTuning";

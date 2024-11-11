@@ -3,7 +3,7 @@ import { useTimer } from "./timer/TimerContext";
 import { useGuitarParams } from "../hooks/useGuitarParams";
 import { useGuitarQuery } from "../hooks/useGuitarQuery";
 
-import { NOTES } from "../util/tuning";
+import { NOTES } from "../util/generateFretboard/generateFretboard";
 
 import styles from "./FilterNotes.module.css";
 
