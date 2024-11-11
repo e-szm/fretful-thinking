@@ -21,6 +21,12 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "*",
+        element: (
+          <Navigate to="/guitar/12/E-A-D-G-B-E?view=all" replace={true} />
+        ),
+      },
+      {
         path: "/guitar/:numFrets/:tuning",
         element: (
           <QuizProvider>
