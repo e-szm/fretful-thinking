@@ -6,7 +6,7 @@ import SelectTonality from "../ui/SelectTonality";
 import SelectView from "./SelectView";
 import SelectRootString from "./SelectRootString";
 import FilterNotes from "./FilterNotes";
-import Quiz from "../features/quiz/quiz";
+import Quiz from "../features/quiz/Quiz";
 
 function AppMenu({ fretboard }) {
   const [searchParams, setSearchParams] = useGuitarQuery();
