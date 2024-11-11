@@ -1,7 +1,8 @@
 .filterContainer {
+  flex: 1 1 auto;
+
   display: flex;
-  justify-content: center;
-  gap: 1.2rem;
+  justify-content: space-evenly;
 }
 
 .filter {

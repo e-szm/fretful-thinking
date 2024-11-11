@@ -1,6 +1,8 @@
 .guitarLayout {
   display: flex;
   flex-direction: column;
+
+  font-size: 1.6rem;
 }
 
 .guitarContainer {
@@ -10,4 +12,22 @@
 
   height: 100vh;
   padding: 2.4rem 1.8rem;
+}
+
+/* Media Queries */
+
+@media (max-width: 65em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media (max-width: 51em) {
+  html {
+    font-size: 50%;
+  }
+
+  .guitarLayout {
+    font-size: 1.4rem;
+  }
 }

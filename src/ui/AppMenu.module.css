@@ -4,7 +4,7 @@
 
 .primaryOptions {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 3.2rem;
 
   padding-bottom: 2rem;
@@ -17,4 +17,11 @@
   gap: 3.2rem;
 
   min-height: 3.8rem;
+}
+
+@media (max-width: 43em) {
+  .primaryOptions {
+    flex-direction: column;
+    gap: 1.8rem;
+  }
 }

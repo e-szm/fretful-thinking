@@ -1,5 +1,6 @@
 .btnGroup {
   display: flex;
+  justify-content: space-evenly;
   gap: 0.3rem;
 
   background-color: #fdfdfd;

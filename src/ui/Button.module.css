@@ -1,5 +1,5 @@
 .btn {
-  font-size: 1.6rem;
+  font-size: inherit;
   border-radius: 6px;
   border: none;
 
@@ -10,6 +10,8 @@
 }
 
 .btn:global(.btn--toggle) {
+  flex: 1 0 auto;
+
   background-color: #fdfdfd;
 }
 
