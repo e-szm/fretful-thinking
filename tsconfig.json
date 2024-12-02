@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["DOM", "DOM.Iterable", "ES6", "ScriptHost"],
+    "module": "ES6",
+    "jsx": "react-jsx",
+
+    "noEmit": true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "allowJs": false,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    "strict": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true
+  },
+  "include": ["main.tsx", "src"]
+}
