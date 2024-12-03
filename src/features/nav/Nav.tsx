@@ -1,7 +1,7 @@
 import styles from "./Nav.module.css";
 
-function Nav() {
+const Nav: React.FC = () => {
   return <div className={styles.nav}></div>;
-}
+};
 
 export default Nav;

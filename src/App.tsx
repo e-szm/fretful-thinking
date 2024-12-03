@@ -7,8 +7,8 @@ import {
 import { QuizProvider } from "./features/quiz/QuizContext";
 import { TimerProvider } from "./features/timer/TimerContext";
 
-import AppLayout from "./ui/AppLayout";
-import GuitarDisplay from "./ui/GuitarDisplay";
+import AppLayout from "./layouts/AppLayout";
+import GuitarDisplay from "./components/GuitarDisplay";
 
 const router = createBrowserRouter([
   {
