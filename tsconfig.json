@@ -17,5 +17,5 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true
   },
-  "include": ["main.tsx", "src"]
+  "include": ["main.tsx", "types.ts", "src"]
 }
