@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "lib": ["DOM", "DOM.Iterable", "ES6", "ScriptHost"],
-    "module": "ES6",
+    "module": "preserve",
     "jsx": "react-jsx",
 
     "noEmit": true,
@@ -11,6 +11,7 @@
     "allowJs": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
 
     "strict": true,
     "noImplicitOverride": true,
