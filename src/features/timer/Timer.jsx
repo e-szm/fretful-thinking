@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 import { useGuitarParams } from "../../hooks/useGuitarParams";
-import { useQuiz } from "../../features/quiz/QuizContext";
+import { useQuiz } from "../quiz/QuizContext";
 import { useTimer } from "./TimerContext";
 
 import styles from "./Timer.module.css";

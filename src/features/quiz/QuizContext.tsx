@@ -69,6 +69,7 @@ function reducer(state: QuizState, action: QuizAction): QuizState {
   }
 }
 
+// Context Provider
 interface QuizProviderProps {
   children: React.ReactElement;
 }
