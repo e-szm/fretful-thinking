@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["DOM", "DOM.Iterable", "ES6", "ScriptHost"],
+    "lib": ["DOM", "DOM.Iterable", "ES2020", "ScriptHost"],
     "module": "preserve",
     "jsx": "react-jsx",
 

@@ -8,7 +8,7 @@ import { QuizProvider } from "./features/quiz/QuizContext";
 import { TimerProvider } from "./features/timer/TimerContext";
 
 import AppLayout from "./layouts/AppLayout";
-import GuitarDisplay from "./components/GuitarDisplay";
+import GuitarLayout from "./layouts/GuitarLayout";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: (
           <QuizProvider>
             <TimerProvider>
-              <GuitarDisplay />
+              <GuitarLayout />
             </TimerProvider>
           </QuizProvider>
         ),

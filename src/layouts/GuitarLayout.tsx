@@ -5,12 +5,15 @@ import { generateFretboard } from "../util/generateFretboard/generateFretboard";
 import { useQuiz } from "../features/quiz/QuizContext";
 
 import styles from "./GuitarDisplay.module.css";
-import GuitarConfig from "./GuitarConfig";
-import AppMenu from "./AppMenu";
+import GuitarConfig from "../components/GuitarConfig";
+import AppMenu from "../components/AppMenu";
 import Guitar from "../features/guitar/Guitar";
 
-function GuitarDisplay() {
-  const { status: quizStatus, string: quizString, fret: quizFret } = useQuiz();
+function GuitarLayout() {
+  const {
+    status: quizStatus,
+    noteCoords: [quizString, quizFret],
+  } = useQuiz();
   const [searchParams] = useGuitarQuery();
   const params = useGuitarParams();
 
@@ -38,4 +41,4 @@ function GuitarDisplay() {
   );
 }
 
-export default GuitarDisplay;
+export default GuitarLayout;
