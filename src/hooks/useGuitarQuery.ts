@@ -1,44 +1,43 @@
 import { URLSearchParamsInit, useSearchParams } from "react-router-dom";
 
 interface GuitarURLQuery {
-  view?: string;
+  view: string;
   note?: string;
   pentShape?: number;
   tonality?: string;
   root?: number;
 }
 
-function useGuitarQuery(): [
-  GuitarURLQuery,
-  (paramsObj: GuitarURLQuery) => void
-] {
+type CleanAndSetURLQuery = (
+  nextInit: GuitarURLQuery | ((prev: URLSearchParams) => URLSearchParamsInit)
+) => void;
+
+function useGuitarQuery(): [GuitarURLQuery, CleanAndSetURLQuery] {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const query: GuitarURLQuery = {};
   const placeholder: Record<string, string> = {};
-
   searchParams.forEach(
     (value: string, key: string) => (placeholder[key] = value)
   );
+  if (!placeholder.view)
+    throw new Error('Missing or invalid "view" query parameter');
 
-  if (placeholder.view) query.view = placeholder.view;
+  const query: GuitarURLQuery = { view: placeholder.view };
   if (placeholder.note) query.note = placeholder.note;
   if (placeholder.pentShape) query.pentShape = Number(placeholder.pentShape);
   if (placeholder.tonality) query.tonality = placeholder.tonality;
   if (placeholder.root) query.root = Number(placeholder.root);
 
-  function cleanAndSetURLQuery(
-    nextInit: GuitarURLQuery | ((prev: URLSearchParams) => URLSearchParamsInit)
-  ) {
+  const cleanAndSetURLQuery: CleanAndSetURLQuery = (nextInit) => {
     if (typeof nextInit === "function") return setSearchParams(nextInit);
 
-    const newQuery: GuitarURLQuery = { ...nextInit };
-    Object.entries(newQuery).forEach((entry: [string, string]) => {
-      if (!entry[1]) delete newQuery[entry[0] as keyof GuitarURLQuery];
+    const newQuery: URLSearchParamsInit = {};
+    Object.entries(nextInit).forEach((entry: [string, string]) => {
+      if (entry[1]) newQuery[entry[0]];
     });
 
-    setSearchParams(newQuery as URLSearchParamsInit);
-  }
+    setSearchParams(newQuery);
+  };
 
   return [query, cleanAndSetURLQuery];
 }
