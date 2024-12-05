@@ -1,14 +1,15 @@
 import { createContext, useContext, useReducer } from "react";
 import getRandomInt from "../../util/getRandomInt";
 
+import { GuitarTuning, QuizStatuses } from "../../shared/lib/types";
+
 // Quiz State
-enum Statuses {
-  Idle,
-  InProgress,
-}
+type GuitarString = number | undefined;
+type GuitarFret = number | undefined;
+type NoteCoords = [GuitarString, GuitarFret];
 
 interface QuizState {
-  status: Statuses;
+  status: QuizStatuses;
   noteCoords: NoteCoords;
 
   // Dispatch functions
@@ -18,7 +19,7 @@ interface QuizState {
 }
 
 const initialState: QuizState = {
-  status: Statuses.Idle,
+  status: "idle",
   noteCoords: [undefined, undefined],
 };
 
@@ -45,7 +46,7 @@ function reducer(state: QuizState, action: QuizAction): QuizState {
     case ActionTypes.Start:
       return {
         ...state,
-        status: Statuses.InProgress,
+        status: "in-progress",
         noteCoords: [
           getRandomInt(0, action.payload.tuning.length - 1),
           getRandomInt(1, action.payload.frets),
@@ -78,7 +79,7 @@ const QuizProvider: React.FC<QuizProviderProps> = ({ children }) => {
   const [{ status, noteCoords }, dispatch] = useReducer(reducer, initialState);
 
   function startQuiz(frets: number, tuning: GuitarTuning) {
-    if (status === Statuses.InProgress) return;
+    if (status === "in-progress") return;
     dispatch({ type: ActionTypes.Start, payload: { frets, tuning } });
   }
 

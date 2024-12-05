@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "lib": ["DOM", "DOM.Iterable", "ES2020", "ScriptHost"],
+    "lib": ["DOM", "DOM.Iterable", "ES2023", "ScriptHost"],
     "module": "preserve",
     "jsx": "react-jsx",
 
@@ -17,5 +17,5 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true
   },
-  "include": ["main.tsx", "types.ts", "src"]
+  "include": ["main.tsx", "src/shared/lib/types.ts", "src"]
 }

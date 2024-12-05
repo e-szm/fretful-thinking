@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { GuitarTuning } from "../shared/lib/types";
 
 interface GuitarURLParams {
   numFrets: number;

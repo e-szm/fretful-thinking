@@ -5,8 +5,8 @@ import { generateFretboard } from "../util/generateFretboard/generateFretboard";
 import { useQuiz } from "../features/quiz/QuizContext";
 
 import styles from "./GuitarDisplay.module.css";
-import GuitarConfig from "../components/GuitarConfig";
-import AppMenu from "../components/AppMenu";
+import GuitarConfig from "../shared/components/GuitarConfig";
+import AppMenu from "../shared/components/AppMenu";
 import Guitar from "../features/guitar/Guitar";
 
 function GuitarLayout() {
