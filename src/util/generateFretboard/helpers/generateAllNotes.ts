@@ -14,7 +14,7 @@ function generateAllNotes(
   isHiddenLabel = false
 ): GuitarFretboard {
   const numStrings = tuning.length;
-  if (numStrings < 3 || numStrings > 8)
+  if (numStrings < Constants.MIN_STRINGS || numStrings > Constants.MAX_STRINGS)
     throw new Error("Invalid number of strings: Must be between 3 and 8");
 
   const reversedTuning = tuning.toReversed();

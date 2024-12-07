@@ -6,7 +6,7 @@ import { useTimer } from "./TimerContext";
 
 import styles from "./Timer.module.css";
 
-function formatSeconds(numSeconds) {
+function formatSeconds(numSeconds: number) {
   const minutes = Math.floor(numSeconds / 60);
   const seconds = Math.floor(numSeconds % 60);
 
@@ -15,32 +15,32 @@ function formatSeconds(numSeconds) {
   }${seconds}`;
 }
 
-function Timer() {
+const Timer: React.FC = () => {
   const { numFrets, tuning } = useGuitarParams();
   const { nextNote } = useQuiz();
-  const { timeLimit, tick, nextTick } = useTimer();
-  const intervalRef = useRef(null);
+  const { timeLimit, secsRemaining, decSecsRemaining } = useTimer();
+  const intervalRef = useRef<number>();
 
   const displayTime =
     timeLimit === 0 ? (
       <div className={styles.infin}>&infin;</div>
     ) : (
-      formatSeconds(tick)
+      formatSeconds(secsRemaining)
     );
 
   useEffect(() => {
     if (timeLimit === 0) return;
 
     const intervalId = setInterval(() => {
-      if (tick <= 0) nextNote(numFrets, tuning);
-      nextTick();
+      if (secsRemaining <= 0) nextNote?.(numFrets, tuning);
+      decSecsRemaining?.();
     }, 1000);
     intervalRef.current = intervalId;
 
     return () => clearInterval(intervalId);
-  }, [timeLimit, tick, nextTick, nextNote, numFrets, tuning]);
+  }, [timeLimit, secsRemaining, decSecsRemaining, nextNote, numFrets, tuning]);
 
   return <div className={styles.timer}>{displayTime}</div>;
-}
+};
 
 export default Timer;

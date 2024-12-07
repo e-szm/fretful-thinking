@@ -1,3 +1,5 @@
+import { GuitarTuning } from "../lib/types";
+
 export default abstract class Constants {
   static readonly STD_FRETBOARD = [
     ["E", "B", "G", "D", "A", "E"],
@@ -31,4 +33,15 @@ export default abstract class Constants {
     "G",
     "G#",
   ];
+
+  static readonly STD_TUNING: GuitarTuning = ["E", "A", "D", "G", "B", "E"];
+
+  static readonly MIN_FRETS = 5;
+  static readonly MAX_FRETS = 14;
+
+  static readonly MIN_STRINGS = 3;
+  static readonly MAX_STRINGS = 8;
+
+  static readonly MIN_TIMER = 0;
+  static readonly MAX_TIMER = 20;
 }

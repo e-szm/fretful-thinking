@@ -5,6 +5,9 @@ interface NoteStorage {
   get label(): string;
   get style(): NoteStyle;
   get isBarre(): boolean;
+
+  set label(str: string);
+  set style(style: NoteStyle);
 }
 
 interface NoteOptions {
@@ -30,12 +33,20 @@ class Note implements NoteStorage {
     return this.#label;
   }
 
+  set label(str: string) {
+    this.#label = str;
+  }
+
   get value() {
     return this.#value;
   }
 
   get style() {
     return this.#style;
+  }
+
+  set style(style: NoteStyle) {
+    this.#style = style;
   }
 
   get isBarre() {

@@ -42,11 +42,11 @@ export function generateFretboard({
   root,
   quizInProgress,
 }: FretboardOptions): GuitarFretboard {
+  if (view === "all") return generateAllNotes(tuning, numFrets, quizInProgress);
   if (view === "pentatonics")
     return addStdOpenStrings(generatePentatonic(note, pentShape, tonality));
   if (view === "chords")
     return addStdOpenStrings(generateChord(note, root, tonality));
 
-  // Else view = "all"
-  return generateAllNotes(tuning, numFrets, quizInProgress);
+  throw new Error("Invalid view");
 }

@@ -1,10 +1,5 @@
 import { useParams } from "react-router-dom";
-import { GuitarTuning } from "../shared/lib/types";
-
-interface GuitarURLParams {
-  numFrets: number;
-  tuning: GuitarTuning;
-}
+import { GuitarURLParams } from "../shared/lib/types";
 
 function useGuitarParams() {
   const { numFrets, tuning } = useParams();

@@ -6,6 +6,7 @@ interface TimerState {
   secsRemaining: number;
 
   // Dispatch Functions
+  // TODO: Should not be optional
   decTimeLimit?(): void;
   incTimeLimit?(): void;
   decSecsRemaining?(): void;

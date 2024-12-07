@@ -1,28 +1,24 @@
-import { createSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { useGuitarParams } from "../../../../hooks/useGuitarParams";
-import { useGuitarQuery } from "../../../../hooks/useGuitarQuery";
 import { useGuitarNavigate } from "../../../../hooks/useGuitarNavigate";
 
-import Button from "../../../../ui/Button";
+import Button from "../../../../shared/components/Button";
 
-const STANDARD_TUNING = ["E", "A", "D", "G", "B", "E"];
+import Constants from "../../../../shared/classes/Constants";
 
-function ResetTuning() {
-  const [searchParams] = useGuitarQuery();
+const ResetTuning: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const { numFrets, tuning } = useGuitarParams();
   const guitarNavigate = useGuitarNavigate();
 
   let disabled = true;
   tuning.forEach((note, i) => {
-    if (note !== STANDARD_TUNING[i]) disabled = false;
+    if (note !== Constants.STD_TUNING[i]) disabled = false;
   });
 
   function onReset() {
-    guitarNavigate(
-      { numFrets, tuning: STANDARD_TUNING },
-      createSearchParams(searchParams)
-    );
+    guitarNavigate({ numFrets, tuning: Constants.STD_TUNING }, searchParams);
   }
 
   return (
@@ -30,6 +26,6 @@ function ResetTuning() {
       Reset Tuning
     </Button>
   );
-}
+};
 
 export default ResetTuning;

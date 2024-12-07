@@ -132,10 +132,10 @@ function generateChord(
 ) {
   // Empty fretboard when user selects chords view, but not a note yet
   if (!note) return emptyFretboard;
-
   if (rootString === 6) return generateBarreChordOn6(note, tonality);
-  // Else root 5
-  return generateBarreChordOn5(note, tonality);
+  if (rootString === 5) return generateBarreChordOn5(note, tonality);
+
+  throw new Error("Invalid rootString");
 }
 
 export { generateChord };

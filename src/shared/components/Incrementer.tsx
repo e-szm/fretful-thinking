@@ -1,13 +1,21 @@
 import styles from "./Incrementer.module.css";
 import Button from "./Button";
 
-function Incrementer({
+interface IncrementerProps {
+  onDecrement: React.MouseEventHandler<HTMLButtonElement>;
+  onIncrement: React.MouseEventHandler<HTMLButtonElement>;
+  disableDec: boolean;
+  disableInc: boolean;
+  children: React.ReactNode;
+}
+
+const Incrementer: React.FC<IncrementerProps> = ({
   onDecrement,
   onIncrement,
   disableDec,
   disableInc,
   children,
-}) {
+}) => {
   return (
     <div className={styles.incrementer}>
       <Button type="small" onClick={onDecrement} disabled={disableDec}>
@@ -19,6 +27,6 @@ function Incrementer({
       </Button>
     </div>
   );
-}
+};
 
 export default Incrementer;

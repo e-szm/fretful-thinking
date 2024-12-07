@@ -5,29 +5,28 @@ import { generateFretboard } from "../util/generateFretboard/generateFretboard";
 import { useQuiz } from "../features/quiz/QuizContext";
 
 import styles from "./GuitarDisplay.module.css";
-import GuitarConfig from "../shared/components/GuitarConfig";
-import AppMenu from "../shared/components/AppMenu";
+import GuitarConfig from "../features/guitar/config/GuitarConfig";
+import AppMenu from "../features/guitar/navMenu/GuitarNavMenu";
 import Guitar from "../features/guitar/Guitar";
 
-function GuitarLayout() {
+const GuitarLayout: React.FC = () => {
   const {
     status: quizStatus,
     noteCoords: [quizString, quizFret],
   } = useQuiz();
-  const [searchParams] = useGuitarQuery();
+  const [guitarURLQuery] = useGuitarQuery();
   const params = useGuitarParams();
 
-  // the 'frets' state begins with open strings (the current tuning)
   const fretboard = generateFretboard({
-    ...searchParams,
+    ...guitarURLQuery,
     ...params,
-    quizStatus,
+    quizInProgress: quizStatus === "in-progress",
   });
-  if (quizString !== null && fretboard[quizFret]) {
+  // TODO: Setting quiz answer should be a method on Fretboard class?
+  if (quizString && quizFret && fretboard[quizFret][quizString]) {
     const correctAnswer = fretboard[quizFret][quizString];
-    correctAnswer.hidden = false;
-    correctAnswer.note = " ";
-    correctAnswer.isRoot = true; // Set as gold
+    correctAnswer.label = " ";
+    correctAnswer.style = "gold";
   }
 
   return (
@@ -39,6 +38,6 @@ function GuitarLayout() {
       </div>
     </div>
   );
-}
+};
 
 export default GuitarLayout;

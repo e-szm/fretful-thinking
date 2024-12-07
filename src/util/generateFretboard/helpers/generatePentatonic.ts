@@ -314,9 +314,9 @@ function generatePentatonic(
   if (shape === 2) return generatePentShape2(note, tonality);
   if (shape === 3) return generatePentShape3(note, tonality);
   if (shape === 4) return generatePentShape4(note, tonality);
+  if (shape === 5) return generatePentShape5(note, tonality);
 
-  // Else shape = 5
-  return generatePentShape5(note, tonality);
+  throw new Error("Invalid pentShape");
 }
 
 export { generatePentatonic };
