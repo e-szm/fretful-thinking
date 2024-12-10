@@ -47,8 +47,9 @@ const Head: React.FC<HeadProps> = ({ fretboard }) => {
 
     const searchParamsInit: URLSearchParamsInit = {};
     Object.entries(guitarURLQuery).forEach(
-      (entry: [string, string]) => searchParamsInit[(entry[0] = entry[1])]
+      (entry: [string, string]) => (searchParamsInit[entry[0]] = entry[1])
     );
+
     navigateGuitar(
       { numFrets, tuning: newTuning.toReversed() },
       createSearchParams(searchParamsInit)
