@@ -41,7 +41,11 @@ const SelectNoteFilter: React.FC<SelectNoteFilterProps> = ({ fretboard }) => {
     const clickedEl = e.currentTarget;
 
     let answer;
-    if (quizFret && quizString && fretboard[quizFret][quizString])
+    if (
+      quizFret !== undefined &&
+      quizString !== undefined &&
+      fretboard[quizFret][quizString]
+    )
       answer = fretboard[quizFret][quizString].value;
 
     if (clickedNote === answer) {

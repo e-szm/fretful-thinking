@@ -24,8 +24,16 @@ const GuitarLayout: React.FC = () => {
   });
 
   // TODO: Setting quiz answer should be a method on Fretboard class?
-  if (quizString && quizFret && fretboard[quizFret][quizString]) {
+  console.log(quizString);
+  console.log(quizFret);
+
+  if (
+    quizString !== undefined &&
+    quizFret !== undefined &&
+    fretboard[quizFret][quizString]
+  ) {
     const correctAnswer = fretboard[quizFret][quizString];
+    console.log(correctAnswer);
     correctAnswer.label = " ";
     correctAnswer.style = "gold";
   }
