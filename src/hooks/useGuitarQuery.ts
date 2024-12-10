@@ -25,14 +25,12 @@ function useGuitarQuery(): [GuitarURLQuery, setGuitarURLQuery] {
 
   const setGuitarURLQuery: setGuitarURLQuery = (nextInit) => {
     if (typeof nextInit === "function") return setSearchParams(nextInit);
-    console.log("Next init: ", nextInit);
 
     const newQuery: URLSearchParamsInit = {};
     Object.entries(nextInit).forEach((entry: [string, string]) => {
       if (entry[1]) newQuery[entry[0]] = entry[1];
     });
 
-    console.log("New query: ", newQuery);
     setSearchParams(newQuery);
   };
 

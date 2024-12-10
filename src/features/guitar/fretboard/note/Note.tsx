@@ -6,7 +6,7 @@ interface NoteProps {
 }
 
 const Note: React.FC<NoteProps> = ({ note }) => {
-  return <div className={`${styles.note} ${note.style}}`}>{note.label}</div>;
+  return <div className={`${styles.note} ${note.style}`}>{note.label}</div>;
 };
 
 export default Note;

@@ -12,7 +12,7 @@ export type GuitarTonality = "major" | "minor";
 export function isGuitarTonality(str: string): str is GuitarTonality {
   return ["major", "minor"].includes(str);
 }
-export type NoteStyle = "blue" | "gold";
+export type NoteStyle = "none" | "blue" | "gold";
 
 // Quiz Types
 export type QuizStatuses = "idle" | "in-progress";

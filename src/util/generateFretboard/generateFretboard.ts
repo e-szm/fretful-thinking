@@ -26,7 +26,9 @@ interface FretboardOptions {
 function addStdOpenStrings(fretboard: GuitarFretboard) {
   fretboard[0].forEach((note, i) => {
     if (note === null)
-      fretboard[0][i] = new Note(Constants.STD_FRETBOARD[0][i]);
+      fretboard[0][i] = new Note(Constants.STD_FRETBOARD[0][i], {
+        style: "none",
+      });
   });
 
   return fretboard;
