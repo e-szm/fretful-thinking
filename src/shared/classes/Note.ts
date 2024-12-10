@@ -5,15 +5,20 @@ interface NoteStorage {
   get label(): string;
   get style(): NoteStyle;
   get isBarre(): boolean;
+  get isHidden(): boolean;
 
   set label(str: string);
   set style(style: NoteStyle);
+
+  hide(): void;
+  unhide(): void;
 }
 
 interface NoteOptions {
   label?: string;
   style?: NoteStyle;
   isBarre?: boolean;
+  isHidden?: boolean;
 }
 
 class Note implements NoteStorage {
@@ -21,12 +26,14 @@ class Note implements NoteStorage {
   #value;
   #style;
   #isBarre;
+  #isHidden;
 
   constructor(value: string, options?: NoteOptions) {
     this.#value = value;
     this.#label = options?.label || value;
     this.#style = options?.style || "blue";
     this.#isBarre = options?.isBarre || false;
+    this.#isHidden = options?.isHidden || false;
   }
 
   get label() {
@@ -51,6 +58,20 @@ class Note implements NoteStorage {
 
   get isBarre() {
     return this.#isBarre;
+  }
+
+  get isHidden() {
+    return this.#isHidden;
+  }
+
+  hide() {
+    if (this.#isHidden) return;
+    this.#isHidden = true;
+  }
+
+  unhide() {
+    if (!this.#isHidden) return;
+    this.#isHidden = false;
   }
 }
 

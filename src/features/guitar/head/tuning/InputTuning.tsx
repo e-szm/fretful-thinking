@@ -16,12 +16,16 @@ const InputTuning: React.FC<InputTuningProps> = ({
   onChange,
   disabled,
 }) => {
+  let defaultVal;
+  if (note === null || note.isHidden) defaultVal = "";
+  else defaultVal = note.label;
+
   return (
     <input
       className={`${styles.input} ${note ? note.style : ""}`}
       type="text"
       maxLength={2}
-      value={note?.label || ""}
+      value={defaultVal}
       onChange={onChange}
       onFocus={handleFocus}
       disabled={disabled}

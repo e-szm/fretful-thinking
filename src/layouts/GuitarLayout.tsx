@@ -32,6 +32,7 @@ const GuitarLayout: React.FC = () => {
     const correctAnswer = fretboard[quizFret][quizString];
     correctAnswer.label = " ";
     correctAnswer.style = "gold";
+    correctAnswer.unhide();
   }
 
   return (

@@ -13,7 +13,7 @@ const String: React.FC<StringProps> = ({ note }) => {
   return (
     <div className={styles.stringContainer}>
       <div className={styles.string}></div>
-      {note?.label && <Note note={note} />}
+      {note?.label && !note.isHidden && <Note note={note} />}
       {note?.isBarre && <Barre />}
     </div>
   );

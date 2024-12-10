@@ -11,7 +11,7 @@ function getTuningIndices(tuning: GuitarTuning) {
 function generateAllNotes(
   tuning: GuitarTuning = ["E", "A", "D", "G", "B", "E"],
   numFrets = 14,
-  isHiddenLabel = false
+  isHidden = false
 ): GuitarFretboard {
   const numStrings = tuning.length;
   if (numStrings < Constants.MIN_STRINGS || numStrings > Constants.MAX_STRINGS)
@@ -20,7 +20,7 @@ function generateAllNotes(
   const reversedTuning = tuning.toReversed();
   const tuningIndices = getTuningIndices(reversedTuning);
   const fretboard = [
-    reversedTuning.map((note) => new Note(note, { style: "none" })),
+    reversedTuning.map((note) => new Note(note, { style: "none", isHidden })),
   ];
   for (let i = 0; i < numFrets; ++i) {
     const fret = [];
@@ -29,7 +29,7 @@ function generateAllNotes(
         tuningIndices[j] >= NOTES.length - 1 ? 0 : tuningIndices[j] + 1;
       const note = NOTES[tuningIndices[j]];
 
-      fret.push(new Note(note, { label: isHiddenLabel ? "" : note }));
+      fret.push(new Note(note, { isHidden }));
     }
     fretboard.push(fret);
   }
