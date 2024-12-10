@@ -13,9 +13,11 @@ const ResetTuning: React.FC = () => {
   const guitarNavigate = useGuitarNavigate();
 
   let disabled = true;
-  tuning.forEach((note, i) => {
-    if (note !== Constants.STD_TUNING[i]) disabled = false;
-  });
+  if (tuning.length !== Constants.STD_TUNING.length) disabled = false;
+  else
+    tuning.forEach((note, i) => {
+      if (note !== Constants.STD_TUNING[i]) disabled = false;
+    });
 
   function onReset() {
     guitarNavigate({ numFrets, tuning: Constants.STD_TUNING }, searchParams);
