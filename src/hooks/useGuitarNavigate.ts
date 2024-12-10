@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { GuitarURLParams, GuitarURLQuery } from "../shared/lib/types";
+import { GuitarURLParams } from "../shared/lib/types";
 
 type GuitarNavigateFunction = (
   params: GuitarURLParams,
