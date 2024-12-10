@@ -15,7 +15,9 @@
 
     "strict": true,
     "noImplicitOverride": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": ["main.tsx", "src/shared/lib/types.ts", "src"]
 }
