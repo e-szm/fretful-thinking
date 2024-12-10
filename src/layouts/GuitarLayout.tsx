@@ -4,7 +4,7 @@ import { generateFretboard } from "../util/generateFretboard/generateFretboard";
 
 import { useQuiz } from "../features/quiz/QuizContext";
 
-import styles from "./GuitarDisplay.module.css";
+import styles from "./GuitarLayout.module.css";
 import GuitarConfig from "../features/guitar/config/GuitarConfig";
 import GuitarNavMenu from "../features/guitar/navMenu/GuitarNavMenu";
 import Guitar from "../features/guitar/Guitar";

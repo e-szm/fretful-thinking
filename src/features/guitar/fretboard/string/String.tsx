@@ -8,11 +8,11 @@ interface StringProps {
   note: NoteClass | null;
 }
 
+// TODO: Need to add a hidden method to note for the quiz?
 const String: React.FC<StringProps> = ({ note }) => {
   return (
     <div className={styles.stringContainer}>
       <div className={styles.string}></div>
-      // TODO: Need to add a hidden method to note for the quiz?
       {note?.label && <Note note={note} />}
       {note?.isBarre && <Barre />}
     </div>

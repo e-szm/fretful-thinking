@@ -5,7 +5,7 @@ import { useGuitarQuery } from "../../../hooks/useGuitarQuery";
 
 import Constants from "../../../shared/classes/Constants";
 
-import styles from "./FilterNotes.module.css";
+import styles from "./SelectNoteFilter.module.css";
 import NoteFilter from "./NoteFilter";
 
 import { GuitarFretboard } from "../../../shared/lib/types";

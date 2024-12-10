@@ -27,6 +27,7 @@ const SelectView: React.FC<SelectViewProps> = ({
 
   function handleClickView(clickedView: GuitarView) {
     if (clickedView === view) return;
+    console.log("Clicked: ", clickedView);
 
     allParamsRef.current = { ...allParamsRef.current, ...guitarURLQuery };
 
