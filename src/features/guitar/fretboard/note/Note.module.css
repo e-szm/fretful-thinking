@@ -10,15 +10,18 @@
   height: 3.8rem;
   width: 3.8rem;
   padding: 0.3rem;
-  border-radius: 100%;
 
+  border-radius: 100%;
   font-size: 1.8rem;
-  background-color: #94a7ae;
   border: 1px solid #777;
 
   z-index: 999;
 }
 
-.note:global(.root) {
+.note:global(.blue) {
+  background-color: #94a7ae;
+}
+
+.note:global(.gold) {
   background-color: #cbab58;
 }

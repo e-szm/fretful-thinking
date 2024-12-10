@@ -4,7 +4,13 @@ import { useGuitarParams } from "../../../hooks/useGuitarParams";
 import styles from "./Fretboard.module.css";
 import Fret from "./fret/Fret";
 
-function Fretboard({ fretboard }) {
+import { GuitarFretboard } from "../../../shared/lib/types";
+
+interface FretboardProps {
+  fretboard: GuitarFretboard;
+}
+
+const Fretboard: React.FC<FretboardProps> = ({ fretboard }) => {
   const [{ note: noteFilter }] = useGuitarQuery();
   const { numFrets } = useGuitarParams();
 
@@ -18,6 +24,6 @@ function Fretboard({ fretboard }) {
       ))}
     </div>
   );
-}
+};
 
 export default Fretboard;

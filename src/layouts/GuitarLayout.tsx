@@ -6,7 +6,7 @@ import { useQuiz } from "../features/quiz/QuizContext";
 
 import styles from "./GuitarDisplay.module.css";
 import GuitarConfig from "../features/guitar/config/GuitarConfig";
-import AppMenu from "../features/guitar/navMenu/GuitarNavMenu";
+import GuitarNavMenu from "../features/guitar/navMenu/GuitarNavMenu";
 import Guitar from "../features/guitar/Guitar";
 
 const GuitarLayout: React.FC = () => {
@@ -33,7 +33,7 @@ const GuitarLayout: React.FC = () => {
     <div className={styles.guitarLayout}>
       <GuitarConfig />
       <div className={styles.guitarContainer}>
-        <AppMenu fretboard={fretboard} />
+        <GuitarNavMenu fretboard={fretboard} />
         <Guitar fretboard={fretboard} />
       </div>
     </div>

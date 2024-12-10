@@ -1,11 +1,18 @@
-import { useSearchParams } from "react-router-dom";
+import { useGuitarQuery } from "../../../../hooks/useGuitarQuery";
 
 import styles from "./Fret.module.css";
 import String from "../string/String";
 
-function Fret({ num, fret, noteFilter }) {
-  const [searchParams] = useSearchParams();
-  const view = searchParams.get("view");
+import Note from "../../../../shared/classes/Note";
+
+interface FretProps {
+  num: number;
+  fret: Array<Note | null>;
+  noteFilter: string | undefined;
+}
+
+const Fret: React.FC<FretProps> = ({ num, fret, noteFilter }) => {
+  const [{ view }] = useGuitarQuery();
 
   // Guitar inlays typically appear on 1, 3, 5, 7, 9
   // On fret 12, there is typically a double inlay
@@ -23,12 +30,12 @@ function Fret({ num, fret, noteFilter }) {
         )}
         {noteFilter && view === "all"
           ? fret.map((note, i) => (
-              <String key={i} note={noteFilter === note?.note ? note : ""} />
+              <String key={i} note={noteFilter === note?.value ? note : null} />
             ))
           : fret.map((note, i) => <String key={i} note={note} />)}
       </div>
     </>
   );
-}
+};
 
 export default Fret;
