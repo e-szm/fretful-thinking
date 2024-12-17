@@ -7,7 +7,9 @@ const AppLayout: React.FC = () => {
   return (
     <div className={styles.appLayout}>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };
