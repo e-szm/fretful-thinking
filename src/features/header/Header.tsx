@@ -1,8 +1,8 @@
-import styles from "./Nav.module.css";
+import styles from "./Header.module.css";
 
-const Nav: React.FC = () => {
+const Header: React.FC = () => {
   return (
-    <div className={styles.nav}>
+    <div className={styles.header}>
       <img
         className={styles.logo}
         src="/logo.png"
@@ -12,4 +12,4 @@ const Nav: React.FC = () => {
   );
 };
 
-export default Nav;
+export default Header;
