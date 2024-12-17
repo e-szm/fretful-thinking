@@ -1,4 +1,9 @@
 .nav {
-  height: 6.8rem;
   background-color: #94a7ae;
+  padding: 0.8rem 2.4rem;
+}
+
+.logo {
+  display: block;
+  width: 11rem;
 }
