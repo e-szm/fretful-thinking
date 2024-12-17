@@ -30,9 +30,15 @@ const Fret: React.FC<FretProps> = ({ num, fret, noteFilter }) => {
         )}
         {noteFilter && view === "all"
           ? fret.map((note, i) => (
-              <String key={i} note={noteFilter === note?.value ? note : null} />
+              <String
+                key={i}
+                note={noteFilter === note?.value ? note : null}
+                stringNum={i + 1}
+              />
             ))
-          : fret.map((note, i) => <String key={i} note={note} />)}
+          : fret.map((note, i) => (
+              <String key={i} note={note} stringNum={i + 1} />
+            ))}
       </div>
     </>
   );
