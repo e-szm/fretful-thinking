@@ -6,13 +6,15 @@ import Barre from "../barre/Barre";
 
 interface StringProps {
   note: NoteClass | null;
+  stringNum: number;
 }
 
-// TODO: Need to add a hidden method to note for the quiz?
-const String: React.FC<StringProps> = ({ note }) => {
+const String: React.FC<StringProps> = ({ note, stringNum }) => {
+  const height = stringNum + "px";
+
   return (
     <div className={styles.stringContainer}>
-      <div className={styles.string}></div>
+      <div className={styles.string} style={{ height }}></div>
       {note?.label && !note.isHidden && <Note note={note} />}
       {note?.isBarre && <Barre />}
     </div>
