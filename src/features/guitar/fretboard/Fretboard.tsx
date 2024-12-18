@@ -20,7 +20,7 @@ const Fretboard: React.FC<FretboardProps> = ({ fretboard }) => {
   return (
     <div className={styles.fretboard}>
       {displayFretboard.map((fret, i) => (
-        <Fret key={i} num={i + 1} fret={fret} noteFilter={noteFilter} />
+        <Fret key={i} fretNum={i + 1} fret={fret} noteFilter={noteFilter} />
       ))}
     </div>
   );
