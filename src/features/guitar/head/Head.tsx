@@ -24,7 +24,6 @@ const Head: React.FC<HeadProps> = ({ fretboard }) => {
 
   const { view } = guitarURLQuery;
   const tuningNotes = fretboard[0].map((note) => {
-    // TODO: Do not return note if note is hidden
     if (note) return note;
     return null;
   });

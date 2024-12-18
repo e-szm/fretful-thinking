@@ -6,7 +6,6 @@ interface NoteFilterProps {
   curFilter: string | undefined;
 }
 
-// TODO: Should use shared Button component
 const NoteFilter: React.FC<NoteFilterProps> = ({
   noteFilter,
   onClick,

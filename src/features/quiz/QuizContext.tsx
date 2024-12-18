@@ -4,7 +4,6 @@ import getRandomInt from "../../util/getRandomInt";
 import { GuitarTuning, QuizStatuses } from "../../shared/lib/types";
 
 // Quiz State
-// TODO: When status is in-progress, String and Fret should not be optional
 type GuitarString = number | undefined;
 type GuitarFret = number | undefined;
 type NoteCoords = [GuitarString, GuitarFret];
@@ -14,7 +13,6 @@ interface QuizState {
   noteCoords: NoteCoords;
 
   // Dispatch functions
-  // TODO: Should not be optional
   startQuiz?(frets: number, tuning: GuitarTuning): void;
   nextNote?(frets: number, tuning: GuitarTuning): void;
   endQuiz?(): void;

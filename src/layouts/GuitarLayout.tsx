@@ -23,7 +23,6 @@ const GuitarLayout: React.FC = () => {
     quizInProgress: quizStatus === "in-progress",
   });
 
-  // TODO: Setting quiz answer should be a method on Fretboard class?
   if (
     quizString !== undefined &&
     quizFret !== undefined &&

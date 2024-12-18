@@ -28,7 +28,6 @@ function generatePentShape1(
 
   const fretboard = [];
   for (let curFretNum = 0; curFretNum < emptyFretboard.length; ++curFretNum) {
-    // TODO: Currently returning mutable array from constant
     const curFret = STD_FRETBOARD[curFretNum];
 
     if (curFretNum === scalePosition) {
