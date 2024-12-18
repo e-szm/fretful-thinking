@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: space-around;
 
-  width: 100%;
   background-color: #ddd;
   z-index: 1;
 }
